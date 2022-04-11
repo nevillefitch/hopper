@@ -3,7 +3,17 @@
 DROP TABLE IF EXISTS hours CASCADE;
 DROP TABLE IF EXISTS day CASCADE;
 DROP TABLE IF EXISTS image CASCADE;
+DROP TABLE IF EXISTS event CASCADE;
 DROP TABLE IF EXISTS brewery CASCADE;
+DROP TABLE IF EXISTS beer_review CASCADE;
+DROP TABLE IF EXISTS beer CASCADE;
+DROP TABLE IF EXISTS beer_type CASCADE;
+
+
+
+
+
+
 
 CREATE TABLE brewery (
 	brewery_id serial,
@@ -16,7 +26,7 @@ CREATE TABLE brewery (
 	zipcode char(5),
 	history varchar(2000),
 	logo_img varchar(150),
-	active bool DEFAULT 'true',
+	is_active bool DEFAULT 'true',
 	has_food bool,
 	owner_id int NOT NULL,
 	CONSTRAINT PK_brewery PRIMARY KEY (brewery_id),
@@ -112,7 +122,57 @@ VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),
 INSERT INTO hours (brewery_id, day_id, open, close)
 VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'), 
 		(SELECT day_id FROM day WHERE abbreviation = 'Sat'),
-		'17:00:00', '23:00:00');		
+		'17:00:00', '23:00:00');	
+	
+
+CREATE TABLE beer_type (
+	beer_type_id serial,
+	type_name varchar(50),
+	
+	CONSTRAINT PK_beer_type PRIMARY KEY (beer_type_id)
+	
+);
+
+CREATE TABLE beer (
+	beer_id serial,
+	brewery_id int NOT NULL, 
+	name varchar(100) NOT NULL,
+	img_path varchar(500),
+	description varchar(1000),
+	abv decimal(2,1) NOT NULL,
+	is_active bool DEFAULT 'true', 
+	beer_type_id int,
+	
+	CONSTRAINT PK_beer PRIMARY KEY (beer_id),
+	CONSTRAINT FK_beer_type FOREIGN KEY (beer_type_id) REFERENCES beer_type(beer_type_id)
+		
+);
+
+
+CREATE TABLE beer_review (
+	review_id serial,
+	beer_id int NOT NULL, 
+	review_message varchar(1000) NOT NULL,
+	score int CHECK (score <=  5 AND score >= 0) NOT NULL,
+	
+	CONSTRAINT PK_review PRIMARY KEY (review_id),
+	CONSTRAINT FK_beer FOREIGN KEY (beer_id) REFERENCES beer(beer_id)
+);
+
+
+CREATE TABLE event (
+	event_id serial,
+	brewery_id int NOT NULL,
+	name varchar(100) NOT NULL,
+	event_description varchar(1000),
+	
+	CONSTRAINT PK_event PRIMARY KEY (event_id),
+	CONSTRAINT FK_brewery_id FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id)
+	
+);
+
+
+
 
 
 
