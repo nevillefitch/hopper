@@ -51,6 +51,7 @@ TO final_capstone_appuser;
 
 
 -- BEER, BREWERY, EVENT, REVIEW TABLE SETUP
+
 DROP TABLE IF EXISTS hours CASCADE;
 DROP TABLE IF EXISTS day CASCADE;
 DROP TABLE IF EXISTS image CASCADE;
@@ -59,6 +60,11 @@ DROP TABLE IF EXISTS brewery CASCADE;
 DROP TABLE IF EXISTS beer_review CASCADE;
 DROP TABLE IF EXISTS beer CASCADE;
 DROP TABLE IF EXISTS beer_type CASCADE;
+
+
+
+
+
 
 
 CREATE TABLE brewery (
@@ -185,6 +191,7 @@ CREATE TABLE beer (
 	name varchar(100) NOT NULL,
 	img_path varchar(500),
 	description varchar(1000),
+	price numeric (5,2) NOT NULL,
 	abv decimal(2,1) NOT NULL,
 	is_active bool DEFAULT 'true',
 	beer_type_id int,
@@ -218,6 +225,30 @@ CREATE TABLE event (
 );
 
 
+INSERT INTO beer_type (type_name) VALUES ('American Pale Ale');
+INSERT INTO beer_type (type_name) VALUES ('India Pale Ale (IPA)');
+INSERT INTO beer_type (type_name) VALUES ('Stout');
+INSERT INTO beer_type (type_name) VALUES ('Wheat Beer');
+INSERT INTO beer_type (type_name) VALUES ('Lager');
+INSERT INTO beer_type (type_name) VALUES ('Pilsner');
+INSERT INTO beer_type (type_name) VALUES ('Amber Ale');
+INSERT INTO beer_type (type_name) VALUES ('English Pale Ale');
+INSERT INTO beer_type (type_name) VALUES ('Porter');
+INSERT INTO beer_type (type_name) VALUES ('Hefeweizen');
+INSERT INTO beer_type (type_name) VALUES ('American Wheat Beer');
+INSERT INTO beer_type (type_name) VALUES ('Sour Beer');
+INSERT INTO beer_type (type_name) VALUES ('American Brown Ale');
+INSERT INTO beer_type (type_name) VALUES ('Barleywine');
+INSERT INTO beer_type (type_name) VALUES ('Gose');
+INSERT INTO beer_type (type_name) VALUES ('Dunkle');
+INSERT INTO beer_type (type_name) VALUES ('Kombucha');
+INSERT INTO beer_type (type_name) VALUES ('Dubbel');
+INSERT INTO beer_type (type_name) VALUES ('Tripel');
+
+INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Triple G-ddess Tap Room'),'Bourbon Peach','https://craftpeak-commerce-images.imgix.net/2020/06/UV_Can_Bourbon_Peach_Highres.png?auto=compress%2Cformat&fit=crop&h=324&ixlib=php-1.2.1&w=324&wpsize=shop_catalog','Our best selling kombucha beer! Made with bourbon chips, peaches and Michigan hops,','4.99','8.2',(SELECT beer_type_id FROM beer_type WHERE type_name like 'Kombucha'));
+INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Triple G-ddess Tap Room'),'Tart Raspberry','https://craftpeak-commerce-images.imgix.net/2020/06/UV_Can_Tart_Raspberry_Highres.png?auto=compress%2Cformat&fit=crop&h=324&ixlib=php-1.2.1&w=324&wpsize=shop_catalog','This Kombucha beer’s brilliant red hue and creamy white-head makes this tangy ambrosia look almost as good as it tastes!','4.99','8.2',(SELECT beer_type_id FROM beer_type WHERE type_name like 'Kombucha'));
+INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Cigar City Brewery'),'Jai Alai','https://www.cigarcitybrewing.com/wp-content/uploads/2019/03/Jai-Alai-Art-Mock-copy.png','An intense bouquet of tangerine and candied orange peel entices the nose while flavors of clementines, Valencia orange, and subtle caramel provide counterpoint to an assertive bitterness and rich malt character. Bold hop flavor and aroma from six different hop varietals is front and center in this flavorful American IPA.','3.5','5.5',(SELECT beer_type_id FROM beer_type WHERE type_name like 'India Pale Ale (IPA)'));
+INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Flying Dog Brewery'),'Snake Dog','https://www.flyingdog.com/media/CACHE/images/beers/cans/SnakeDog_12oz_Can/650053de99891d84e1d5ec7e50f20803.png','A potent snakebite of 5 different hops gives Snake Dog its citrus-forward superpower. Orange and tropical fruit aromas temper slightly-piney crispness, turning Snake Dog into a more complex breed of West Coast IPA.','7.5','7.1',(SELECT beer_type_id FROM beer_type WHERE type_name like 'India Pale Ale (IPA)'));
 
 
 COMMIT TRANSACTION;
