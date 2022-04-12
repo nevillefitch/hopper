@@ -1,13 +1,17 @@
 <template>
   <div class="brewery-list">
-      <p>test test test</p>
-      <div v-for="brewery in breweries" v-bind:key = "brewery.breweryId" class = "brewery">
-          <img :src="brewery.logo" alt="brewery logo">
-          <h2>{{brewery.name}}</h2>
-          <p>{{brewery.phone}}</p>
-          <p>{{brewery.email}}</p>
-          <p>{{brewery.city}}</p>
-      </div>
+    <p>test test test</p>
+    <div
+      v-for="brewery in $store.state.breweries"
+      v-bind:key="brewery.breweryId"
+      class="brewery"
+    >
+      <img :src="brewery.logo" alt="brewery logo" />
+      <h2>{{ brewery.name }}</h2>
+      <p>{{ brewery.phone }}</p>
+      <p>{{ brewery.email }}</p>
+      <p>{{ brewery.city }}</p>
+    </div>
   </div>
 </template>
 
@@ -15,16 +19,29 @@
 import BreweryService from "../services/BreweryService.js";
 export default {
   name: "brewery-list",
-  data() {
-      return {
-          breweries: []
-      }
+  methods: {
+    getBreweries() {
+      BreweryService.getBreweryList()
+        .then((response) => {
+          this.$store.commit("SET_BREWERIES", response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.errorMsg =
+              "Error retrieving breweries. Error: " + error.response.statusText;
+          } else if (error.request) {
+            this.errorMsg =
+              "Error submitting request for breweries. Cannot reach the server.";
+          } else {
+            this.errorMsg =
+              "Unknown error. Request could not be completed.";
+          }
+        });
+    },
   },
   created() {
-      BreweryService.getBreweryList().then((response) => {
-          this.breweries = response.data;
-      })
-  }
+    this.getBreweries();
+  },
 };
 </script>
 
