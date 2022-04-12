@@ -8,5 +8,5 @@ public interface BreweryDao {
     List<Brewery> getBreweries();
     Brewery addBrewery(Brewery brewery);
     boolean updateBrewery(Brewery brewery);
-    boolean deleteBrewery(int breweryId);
+
 }

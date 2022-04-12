@@ -102,34 +102,6 @@ public class JdbcBreweryDao implements BreweryDao {
         return count == 1;
     }
 
-
-    /**
-     * used by an admin to delete a brewery
-     *
-     * @param breweryId
-     * @return boolean
-     */
-    @Override
-    public boolean deleteBrewery(int breweryId) {
-        String sql = "DELETE FROM hours " +
-                "WHERE brewery_id = ?; " +
-                "DELETE FROM event " +
-                "WHERE brewery_id = ?; " +
-                "DELETE FROM image " +
-                "WHERE brewery_id = ?; " +
-                "DELETE FROM beer_review " +
-                "WHERE beer_id in " +
-                "(SELECT beer_id " +
-                "FROM beer " +
-                "WHERE brewery_id = ?); " +
-                "DELETE FROM beer " +
-                "WHERE brewery_id = ?; " +
-                "DELETE FROM brewery " +
-                "WHERE brewery_id = ?; ";
-        int count = jdbcTemplate.update(sql, breweryId, breweryId, breweryId, breweryId, breweryId, breweryId);
-        return count == 1;
-    }
-
     private Brewery mapRowToBrewery(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
 
