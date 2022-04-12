@@ -5,13 +5,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JdbcBreweryDao implements BreweryDao{
+public class JdbcBreweryDao implements BreweryDao {
 
     private JdbcTemplate jdbcTemplate;
+
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -24,11 +26,10 @@ public class JdbcBreweryDao implements BreweryDao{
                 + "FROM brewery "
                 + "WHERE brewery_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
-        if (results.next()){
+        if (results.next()) {
             brewery = mapRowToBrewery(results);
             return brewery;
-        }
-        else {
+        } else {
             throw new RuntimeException("Brewery with ID " + breweryId + " was not found.");
         }
     }
@@ -38,7 +39,7 @@ public class JdbcBreweryDao implements BreweryDao{
         List<Brewery> breweries = new ArrayList<>();
         String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state, zipcode, history, logo_img, is_active, has_food, owner_id FROM brewery";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while(results.next()){
+        while (results.next()) {
             Brewery brewery = mapRowToBrewery(results);
             breweries.add(brewery);
         }
@@ -48,14 +49,35 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public Brewery addBrewery(Brewery brewery) {
-        Brewery brewery = new Brewery();
-
-        return brewery;
+        Brewery newBrewery = new Brewery();
+        String sql = "INSERT INTO brewery(brewery.name, owner_id) " +
+                "VALUES(?, ?)";
+        try {
+            int newBreweryId = jdbcTemplate.queryForObject(sql, int.class, brewery.getBreweryId(), brewery.getOwnerId());
+            newBrewery = getBrewery(newBreweryId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return newBrewery;
     }
 
     @Override
     public boolean updateBrewery(Brewery brewery) {
-        return false;
+        boolean isUpdated = false;
+        Brewery newBrewery = getBrewery(brewery.getBreweryId());
+        String sql = "UPDATE brewery " +
+                "SET brewery.name = ?, email = ?, phone = ?, street_address = ?, " +
+                "city = ?, state = ?, zipcode = ?, history = ?, logo_img = ?, is_active = ?, has_food = ? " +
+                "WHERE brewery_id = ?";
+        if (newBrewery != null) {
+            jdbcTemplate.update(sql, brewery.getName(), brewery.getEmail(),
+                    brewery.getPhone(), brewery.getStreetAddress(),
+                    brewery.getCity(), brewery.getState(), brewery.getZip(),
+                    brewery.getHistory(), brewery.getLogo(), brewery.isActive(),
+                    brewery.isHasFood(), brewery.getBreweryId());
+            isUpdated = true;
+        }
+        return isUpdated;
     }
 
     @Override
@@ -63,7 +85,7 @@ public class JdbcBreweryDao implements BreweryDao{
         return false;
     }
 
-    private Brewery mapRowToBrewery(SqlRowSet rowSet){
+    private Brewery mapRowToBrewery(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
 
         brewery.setBreweryId(rowSet.getInt("brewery_id"));
