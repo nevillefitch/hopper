@@ -19,7 +19,18 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public Brewery getBrewery(int breweryId) {
-        return null;
+        Brewery brewery = new Brewery();
+        String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state, zipcode, history, logo_img, is_active, has_food, owner_id "
+                + "FROM brewery "
+                + "WHERE brewery_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
+        if (results.next()){
+            brewery = mapRowToBrewery(results);
+            return brewery;
+        }
+        else {
+            throw new RuntimeException("Brewery with ID " + breweryId + " was not found.");
+        }
     }
 
     @Override
@@ -37,7 +48,9 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public Brewery addBrewery(Brewery brewery) {
-        return null;
+        Brewery brewery = new Brewery();
+
+        return brewery;
     }
 
     @Override
