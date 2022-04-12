@@ -241,43 +241,4 @@ ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
 
 
-
-
---- USER SETUP (Do Not Modify)
-DROP USER IF EXISTS final_capstone_owner;
-DROP USER IF EXISTS final_capstone_appuser;
-
-CREATE USER final_capstone_owner
-WITH PASSWORD 'finalcapstone';
-
-GRANT ALL
-ON ALL TABLES IN SCHEMA public
-TO final_capstone_owner;
-
-GRANT ALL
-ON ALL SEQUENCES IN SCHEMA public
-TO final_capstone_owner;
-
-CREATE USER final_capstone_appuser
-WITH PASSWORD 'finalcapstone';
-
-GRANT SELECT, INSERT, UPDATE, DELETE
-ON ALL TABLES IN SCHEMA public
-TO final_capstone_appuser;
-
-GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA public
-TO final_capstone_appuser;
-
---- End: do not modify
-
-
-
-
-
-
-
-
-
-
 COMMIT TRANSACTION;

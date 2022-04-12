@@ -91,7 +91,7 @@ public class JdbcBreweryDao implements BreweryDao {
     @Override
     public boolean updateBrewery(Brewery brewery) {
         String sql = "UPDATE brewery " +
-                "SET brewery.name = ?, email = ?, phone = ?, street_address = ?, " +
+                "SET name = ?, email = ?, phone = ?, street_address = ?, " +
                 "city = ?, state = ?, zipcode = ?, history = ?, logo_img = ?, is_active = ?, has_food = ? " +
                 "WHERE brewery_id = ?";
         int count = jdbcTemplate.update(sql, brewery.getName(), brewery.getEmail(),
@@ -127,8 +127,7 @@ public class JdbcBreweryDao implements BreweryDao {
                 "DELETE FROM brewery " +
                 "WHERE brewery_id = ?; ";
         int count = jdbcTemplate.update(sql, breweryId, breweryId, breweryId, breweryId, breweryId, breweryId);
-       // return count == 1;
-        return true;
+        return count == 1;
     }
 
     private Brewery mapRowToBrewery(SqlRowSet rowSet) {
