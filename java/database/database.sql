@@ -1,6 +1,14 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS hours CASCADE;
+DROP TABLE IF EXISTS day CASCADE;
+DROP TABLE IF EXISTS image CASCADE;
+DROP TABLE IF EXISTS event CASCADE;
+DROP TABLE IF EXISTS brewery CASCADE;
+DROP TABLE IF EXISTS beer_review CASCADE;
+DROP TABLE IF EXISTS beer CASCADE;
+DROP TABLE IF EXISTS beer_type CASCADE;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -23,49 +31,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 
---- USER SETUP (Do Not Modify)
-DROP USER IF EXISTS final_capstone_owner;
-DROP USER IF EXISTS final_capstone_appuser;
-
-CREATE USER final_capstone_owner
-WITH PASSWORD 'finalcapstone';
-
-GRANT ALL
-ON ALL TABLES IN SCHEMA public
-TO final_capstone_owner;
-
-GRANT ALL
-ON ALL SEQUENCES IN SCHEMA public
-TO final_capstone_owner;
-
-CREATE USER final_capstone_appuser
-WITH PASSWORD 'finalcapstone';
-
-GRANT SELECT, INSERT, UPDATE, DELETE
-ON ALL TABLES IN SCHEMA public
-TO final_capstone_appuser;
-
-GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA public
-TO final_capstone_appuser;
-
-
 -- BEER, BREWERY, EVENT, REVIEW TABLE SETUP
-
-DROP TABLE IF EXISTS hours CASCADE;
-DROP TABLE IF EXISTS day CASCADE;
-DROP TABLE IF EXISTS image CASCADE;
-DROP TABLE IF EXISTS event CASCADE;
-DROP TABLE IF EXISTS brewery CASCADE;
-DROP TABLE IF EXISTS beer_review CASCADE;
-DROP TABLE IF EXISTS beer CASCADE;
-DROP TABLE IF EXISTS beer_type CASCADE;
-
-
-
-
-
-
 
 CREATE TABLE brewery (
 	brewery_id serial,
@@ -250,5 +216,30 @@ INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type
 INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Cigar City Brewery'),'Jai Alai','https://www.cigarcitybrewing.com/wp-content/uploads/2019/03/Jai-Alai-Art-Mock-copy.png','An intense bouquet of tangerine and candied orange peel entices the nose while flavors of clementines, Valencia orange, and subtle caramel provide counterpoint to an assertive bitterness and rich malt character. Bold hop flavor and aroma from six different hop varietals is front and center in this flavorful American IPA.','3.5','5.5',(SELECT beer_type_id FROM beer_type WHERE type_name like 'India Pale Ale (IPA)'));
 INSERT INTO beer (brewery_id, name, img_path, description, price, abv, beer_type_id) VALUES ((SELECT brewery_id FROM brewery WHERE name like 'Flying Dog Brewery'),'Snake Dog','https://www.flyingdog.com/media/CACHE/images/beers/cans/SnakeDog_12oz_Can/650053de99891d84e1d5ec7e50f20803.png','A potent snakebite of 5 different hops gives Snake Dog its citrus-forward superpower. Orange and tropical fruit aromas temper slightly-piney crispness, turning Snake Dog into a more complex breed of West Coast IPA.','7.5','7.1',(SELECT beer_type_id FROM beer_type WHERE type_name like 'India Pale Ale (IPA)'));
 
+--- USER SETUP (Do Not Modify)
+DROP USER IF EXISTS final_capstone_owner;
+DROP USER IF EXISTS final_capstone_appuser;
+
+CREATE USER final_capstone_owner
+WITH PASSWORD 'finalcapstone';
+
+GRANT ALL
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_owner;
+
+GRANT ALL
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_owner;
+
+CREATE USER final_capstone_appuser
+WITH PASSWORD 'finalcapstone';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_appuser;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_appuser;
 
 COMMIT TRANSACTION;
