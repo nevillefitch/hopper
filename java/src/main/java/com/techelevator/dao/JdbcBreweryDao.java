@@ -24,6 +24,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     /**
      * Gets a single brewery by brewery id
+     *
      * @param breweryId
      * @return Brewery
      */
@@ -45,6 +46,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     /**
      * gets all breweries
+     *
      * @return array list of breweries
      */
     @Override
@@ -62,6 +64,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     /**
      * used by an admin to create a brewery with the base template information of a brewery name and the associated brewer (owner_id)
+     *
      * @param brewery
      * @return Brewery
      */
@@ -81,6 +84,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     /**
      * used by a brewer to add/update the information associated with their brewery (email, phone, address, etc)
+     *
      * @param brewery
      * @return boolean
      */
@@ -90,26 +94,41 @@ public class JdbcBreweryDao implements BreweryDao {
                 "SET brewery.name = ?, email = ?, phone = ?, street_address = ?, " +
                 "city = ?, state = ?, zipcode = ?, history = ?, logo_img = ?, is_active = ?, has_food = ? " +
                 "WHERE brewery_id = ?";
-            int count = jdbcTemplate.update(sql, brewery.getName(), brewery.getEmail(),
-                    brewery.getPhone(), brewery.getStreetAddress(),
-                    brewery.getCity(), brewery.getState(), brewery.getZip(),
-                    brewery.getHistory(), brewery.getLogo(), brewery.isActive(),
-                    brewery.isHasFood(), brewery.getBreweryId());
+        int count = jdbcTemplate.update(sql, brewery.getName(), brewery.getEmail(),
+                brewery.getPhone(), brewery.getStreetAddress(),
+                brewery.getCity(), brewery.getState(), brewery.getZip(),
+                brewery.getHistory(), brewery.getLogo(), brewery.isActive(),
+                brewery.isHasFood(), brewery.getBreweryId());
         return count == 1;
     }
 
 
     /**
      * used by an admin to delete a brewery
+     *
      * @param breweryId
      * @return boolean
      */
     @Override
     public boolean deleteBrewery(int breweryId) {
-        String sql = "DELETE FROM brewery " +
-                     "WHERE brewery_id = ?";
-            int count = jdbcTemplate.update(sql, breweryId);
-        return count == 1;
+        String sql = "DELETE FROM hours " +
+                "WHERE brewery_id = ?; " +
+                "DELETE FROM event " +
+                "WHERE brewery_id = ?; " +
+                "DELETE FROM image " +
+                "WHERE brewery_id = ?; " +
+                "DELETE FROM beer_review " +
+                "WHERE beer_id in " +
+                "(SELECT beer_id " +
+                "FROM beer " +
+                "WHERE brewery_id = ?); " +
+                "DELETE FROM beer " +
+                "WHERE brewery_id = ?; " +
+                "DELETE FROM brewery " +
+                "WHERE brewery_id = ?; ";
+        int count = jdbcTemplate.update(sql, breweryId, breweryId, breweryId, breweryId, breweryId, breweryId);
+       // return count == 1;
+        return true;
     }
 
     private Brewery mapRowToBrewery(SqlRowSet rowSet) {
