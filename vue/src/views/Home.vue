@@ -1,12 +1,17 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <p>You must NOT be authenticated to see this</p>
+    <brewery-list></brewery-list>
   </div>
 </template>
 
 <script>
+import BreweryList from '@/components/BreweryList.vue';
 export default {
-  name: "home"
+  name: "home",
+  components:{
+    BreweryList
+  }
 };
 </script>
