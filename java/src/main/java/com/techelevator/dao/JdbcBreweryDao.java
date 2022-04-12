@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JdbcBreweryDao implements BreweryDao{
+public class JdbcBreweryDao implements BreweryDao {
 
     private JdbcTemplate jdbcTemplate;
+
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -25,17 +26,20 @@ public class JdbcBreweryDao implements BreweryDao{
     @Override
     public List<Brewery> getBreweries() {
         List<Brewery> breweries = new ArrayList<>();
-        String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state, zipcode, history, logo_img, is_active, has_food, owner_id FROM brewery";
+        String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state," +
+                " zipcode, history, logo_img, is_active, has_food, owner_id FROM brewery";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while(results.next()){
+        while (results.next()) {
             Brewery brewery = mapRowToBrewery(results);
             breweries.add(brewery);
         }
-
         return breweries;
     }
 
     @Override
+    /**
+     *
+     */
     public Brewery addBrewery(Brewery brewery) {
         return null;
     }
@@ -50,7 +54,7 @@ public class JdbcBreweryDao implements BreweryDao{
         return false;
     }
 
-    private Brewery mapRowToBrewery(SqlRowSet rowSet){
+    private Brewery mapRowToBrewery(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
 
         brewery.setBreweryId(rowSet.getInt("brewery_id"));
