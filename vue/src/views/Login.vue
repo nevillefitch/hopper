@@ -49,10 +49,17 @@ export default {
         username: "",
         password: ""
       },
+      activeBreweryId: "",
       invalidCredentials: false
     };
   },
+  //TODO: refactor to activeBrewery
+   created() {
+    const activeBookISBN = this.$route.params.isbn;
+    this.$store.commit("SET_ACTIVE_BOOK", activeBookISBN);
+  },
   methods: {
+    
     login() {
       authService
         .login(this.user)
@@ -65,7 +72,8 @@ export default {
             this.$router.push({name: 'home'});
             }
             else if (this.$store.state.user.authorities[0].name == "ROLE_BREWER"){
-              this.$router.push({name: 'brewery'});
+              let breweryId = this.getBreweryIdByOwnerId();
+              this.$router.push({name: 'brewery', params: {id: breweryId}});
             }
             else if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
               this.$router.push({name: 'home'});
@@ -84,13 +92,15 @@ export default {
           }
         });
     },
-    // getBreweryId() {
-    //   for (brewery in this.$store.state.breweries) {
-    //     if (brewery.owner_id == this.user.user_id) {
-          
-    //     } 
-    //   }
-    // }
+
+    getBreweryIdByOwnerId() {
+      for(let i = 0; i<this.$store.state.breweries.length; ++i) {
+        if (this.$store.state.breweries[i].ownerId == this.$store.state.user.id) {
+          this.activeBreweryId = this.$store.state.breweries[i].breweryId;
+          break;
+        } 
+      }
+    }
   }
 };
 </script>

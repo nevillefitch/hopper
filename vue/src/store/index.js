@@ -11,6 +11,8 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
+//TODO: add activeBrewery
+//const activeBrewery = 
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -21,6 +23,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     breweries: []
+    //activeBrewery=
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

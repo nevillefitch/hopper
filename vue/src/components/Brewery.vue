@@ -1,5 +1,8 @@
 <template>
-  <div class="brewery">Welcome to your Brewery
+  <div class="brewery"><p>Welcome to your Brewery</p>
+  
+  <h1>{{this.$route.params.id}} </h1>
+     
       <h1></h1>
   </div>
 </template>
