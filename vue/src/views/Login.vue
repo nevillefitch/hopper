@@ -60,12 +60,24 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
+            if (this.$store.state.user.authorities[0].name == "ROLE_USER"){
+              alert("test alert");
             this.$router.push({name: 'home'});
+            }
+            else if (this.$store.state.user.authorities[0].name == "ROLE_BREWER"){
+              this.$router.push({name: 'register'});
+            }
+            else if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
+              this.$router.push({name: 'home'});
+            }
             // if brewer, route to brewer homepage
           }
+          //this.$router.push({name: 'home'});
+          
         })
         .catch(error => {
           const response = error.response;
+          console.log(response);
 
           if (response.status === 401) {
             this.invalidCredentials = true;
