@@ -65,7 +65,7 @@ export default {
             this.$router.push({name: 'home'});
             }
             else if (this.$store.state.user.authorities[0].name == "ROLE_BREWER"){
-              this.$router.push({name: 'register'});
+              this.$router.push({name: 'home'});
             }
             else if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
               this.$router.push({name: 'home'});
