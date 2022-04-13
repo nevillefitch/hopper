@@ -16,6 +16,7 @@ public class JdbcBeerDao implements BeerDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    //TODO expand sql statement to return average rating and set it
     @Override
     public Beer getBeer(int beerId) {
         Beer beer = null;
@@ -34,7 +35,7 @@ public class JdbcBeerDao implements BeerDao{
         }
 
     }
-
+    //TODO expand sql statement to return average rating and set it
     @Override
     public List<Beer> getBeers(int breweryId) {
         List<Beer> beers = new ArrayList<>();
@@ -71,9 +72,11 @@ public class JdbcBeerDao implements BeerDao{
     @Override
     public Boolean updateBeer(Beer beer) {
         String sql = "UPDATE beer " +
-        "SET brewery_id = ?, name = ?, img_path = ?, description = ?, price = ?, abv = ?, is_active = ?, beer_type_id = ? " +
+        "SET name = ?, img_path = ?, description = ?, price = ?, abv = ?, is_active = ?, beer_type_id = ? " +
         "WHERE beer_id = ?;";
-        return null;
+        int count = jdbcTemplate.update(sql, beer.getName(), beer.getImagePath(), beer.getDescription(), beer.getPrice(),
+                beer.getAbv(), beer.isActive(), beer.getBeerTypeId(), beer.getBeerId());
+        return count == 1;
     }
 
     public Beer mapRowToBeer(SqlRowSet rowSet) {
