@@ -55,7 +55,7 @@ public class JdbcBeerDao implements BeerDao{
     @Override
     public Beer addBeer(Beer beer) {
         Beer newBeer = null;
-        String sql = "INSERT INTO beer (brewery_id, name, img_path, description, price, abv, is_active, beer_type_id, ) " +
+        String sql = "INSERT INTO beer (brewery_id, name, img_path, description, price, abv, is_active, beer_type_id ) " +
                     "VALUES(?,?,?,?,?,?,?,?) " +
                     "RETURNING beer_id;" ;
         try {

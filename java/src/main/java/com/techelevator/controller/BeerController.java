@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("breweries/beers")
+@RequestMapping("beers")
 public class BeerController {
 
     private BeerDao beerDao;
@@ -36,13 +36,13 @@ public class BeerController {
 
     //TODO  add permission for brewer only
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Beer addBeer(@RequestBody Beer beer) {
         return beerDao.addBeer(beer);
     }
 
     //TODO  add permission for brewer only
-    @RequestMapping(value = "", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public boolean updateBeer(@RequestBody Beer beer) {
         if (beerDao.updateBeer(beer)) {
             return true;
