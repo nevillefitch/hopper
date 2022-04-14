@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img class="hopperLogo" src="../src/resources/logoAndName.png" alt="HopperLogo" >
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link
@@ -23,3 +24,9 @@
     <router-view />
   </div>
 </template>
+
+<style scoped>
+  .hopperLogo {
+    width: 25%;
+  }
+</style>

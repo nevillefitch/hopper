@@ -58,8 +58,8 @@ public class JdbcBreweryDao implements BreweryDao {
         List<Brewery> breweries = new ArrayList<>();
         String sql = "SELECT br.brewery_id, br.name, email, phone, street_address, city, state, zipcode, " +
                 "history, logo_img, br.is_active, has_food, owner_id, AVG(price) AS avg_price " +
-                "LEFT FROM brewery AS br " +
-                "JOIN beer " +
+                "FROM brewery AS br " +
+                "LEFT JOIN beer " +
                 "ON br.brewery_id = beer.beer_id " +
                 "GROUP BY br.brewery_id; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
