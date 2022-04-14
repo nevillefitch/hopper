@@ -14,14 +14,9 @@ public class Brewery {
     private boolean isActive;
     private boolean hasFood;
     private int ownerId;
+    private double avgPrice;
 
-    public int getOwnerId() {
-        return ownerId;
-    }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
-    }
 
     public Brewery() {
     }
@@ -29,6 +24,22 @@ public class Brewery {
     public Brewery(int breweryId, String name, int ownerId) {
         this.breweryId = breweryId;
         this.name = name;
+        this.ownerId = ownerId;
+    }
+
+    public double getAvgPrice() {
+        return avgPrice;
+    }
+
+    public void setAvgPrice(double avgPrice) {
+        this.avgPrice = avgPrice;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
 

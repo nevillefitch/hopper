@@ -170,9 +170,11 @@ CREATE TABLE beer_review (
 	beer_id int NOT NULL,
 	review_message varchar(1000) NOT NULL,
 	score int CHECK (score <=  5 AND score >= 0) NOT NULL,
+	user_id int NOT NULL,
 
 	CONSTRAINT PK_review PRIMARY KEY (review_id),
-	CONSTRAINT FK_beer FOREIGN KEY (beer_id) REFERENCES beer(beer_id)
+	CONSTRAINT FK_beer FOREIGN KEY (beer_id) REFERENCES beer(beer_id),
+	CONSTRAINT FK_review_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 

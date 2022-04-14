@@ -11,8 +11,8 @@ public class Beer {
     private double price;
     private int beerTypeId;
     private String beerType;
-    private double averageRating;
-    //TODO add list of reviews (or determine proper architecture)
+    private double avgScore;
+
 
 
     public int getBeerTypeId() {
@@ -97,11 +97,11 @@ public class Beer {
         this.beerType = beerType;
     }
 
-    public double getAverageRating() {
-        return averageRating;
+    public double getAvgScore() {
+        return avgScore;
     }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
+    public void setAvgScore(double avgScore) {
+        this.avgScore = avgScore;
     }
 }

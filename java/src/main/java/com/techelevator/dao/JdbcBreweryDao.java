@@ -31,9 +31,13 @@ public class JdbcBreweryDao implements BreweryDao {
     @Override
     public Brewery getBrewery(int breweryId) {
         Brewery brewery = new Brewery();
-        String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state, zipcode, history, logo_img, is_active, has_food, owner_id "
-                + "FROM brewery "
-                + "WHERE brewery_id = ?";
+        String sql = "SELECT br.brewery_id, br.name, email, phone, street_address, city, state, zipcode, " +
+                "history, logo_img, br.is_active, has_food, owner_id, AVG(price) AS avg_price " +
+                "FROM brewery AS br " +
+                "LEFT JOIN beer " +
+                "ON br.brewery_id = beer.beer_id " +
+                "WHERE br.brewery_id = ? " +
+                "GROUP BY br.brewery_id; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
         if (results.next()) {
             brewery = mapRowToBrewery(results);
@@ -52,8 +56,12 @@ public class JdbcBreweryDao implements BreweryDao {
     @Override
     public List<Brewery> getBreweries() {
         List<Brewery> breweries = new ArrayList<>();
-        String sql = "SELECT brewery_id, brewery.name, email, phone, street_address, city, state," +
-                " zipcode, history, logo_img, is_active, has_food, owner_id FROM brewery";
+        String sql = "SELECT br.brewery_id, br.name, email, phone, street_address, city, state, zipcode, " +
+                "history, logo_img, br.is_active, has_food, owner_id, AVG(price) AS avg_price " +
+                "LEFT FROM brewery AS br " +
+                "JOIN beer " +
+                "ON br.brewery_id = beer.beer_id " +
+                "GROUP BY br.brewery_id; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             Brewery brewery = mapRowToBrewery(results);
@@ -69,21 +77,20 @@ public class JdbcBreweryDao implements BreweryDao {
      * @return Brewery
      */
     @Override
-    /**
-     *
-     */
     public Brewery addBrewery(Brewery brewery) {
         Brewery newBrewery = new Brewery();
-        String sql = "INSERT INTO brewery(brewery.name, owner_id) " +
-                "VALUES(?, ?)";
+        String sql = "INSERT INTO brewery(name, owner_id) " +
+                     "VALUES(?, ?) " +
+                     "RETURNING brewery_id; ";
         try {
-            int newBreweryId = jdbcTemplate.queryForObject(sql, int.class, brewery.getBreweryId(), brewery.getOwnerId());
+            int newBreweryId = jdbcTemplate.queryForObject(sql, int.class, brewery.getName(), brewery.getOwnerId());
             newBrewery = getBrewery(newBreweryId);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return newBrewery;
     }
+
 
     /**
      * used by a brewer to add/update the information associated with their brewery (email, phone, address, etc)
@@ -121,6 +128,7 @@ public class JdbcBreweryDao implements BreweryDao {
         brewery.setActive(rowSet.getBoolean("is_active"));
         brewery.setHasFood(rowSet.getBoolean("has_food"));
         brewery.setOwnerId(rowSet.getInt("owner_id"));
+        brewery.setAvgPrice(rowSet.getDouble("avg_price"));
 
         return brewery;
 
