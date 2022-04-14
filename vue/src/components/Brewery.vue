@@ -1,20 +1,26 @@
 <template>
-  <div class="brewery"><p>Welcome to your Brewery</p>
-  
-  <h1>{{this.$route.params.id}} </h1>
-     
-      <h1></h1>
+  <div class="brewery">
+    <img :src="$store.state.activeBrewery.logo" alt="brewery logo" />
+    <h2>{{ $store.state.activeBrewery.name }}</h2>
+    <p>{{ $store.state.activeBrewery.phone }}</p>
+    <p>{{ $store.state.activeBrewery.email }}</p>
+    <p>{{ $store.state.activeBrewery.city }}</p>
   </div>
 </template>
 
 <script>
 export default {
-    method: {
-
-    }
-}
+  name: "brewery",
+  methods: {
+    getBrewery() {
+      this.$store.commit("SET_ACTIVE_BREWERY", this.$route.params.id);
+    },
+  },
+  created() {
+    this.getBrewery();
+  },
+};
 </script>
 
 <style>
-
 </style>

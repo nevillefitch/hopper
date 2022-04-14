@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+//import  find  from 'core-js/core/array'
 
 Vue.use(Vuex)
 
@@ -22,8 +23,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    breweries: []
-    //activeBrewery=
+    breweries: [],
+    activeBrewery: ''
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     },
     SET_BREWERIES(state, breweries) {
       state.breweries = breweries;
+    }, 
+    SET_ACTIVE_BREWERY(state, breweryId) {
+      state.activeBrewery = state.breweries.find(brewery => brewery.breweryId == breweryId)
     }
   }
 })

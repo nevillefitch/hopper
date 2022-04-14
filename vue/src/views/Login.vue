@@ -54,11 +54,11 @@ export default {
     };
   },
   //TODO: refactor to activeBrewery
-  created() {
-    let breweryId = this.getBreweryIdByOwnerId();
+  //created() {
+    //let breweryId = this.getBreweryIdByOwnerId();
     //  const breweryId = this.$route.params.id;
-    this.$store.commit("SET_ACTIVE_BOOK", breweryId);
-  },
+    //this.$store.commit("SET_ACTIVE_BREWERY", breweryId);
+  //},
   methods: {
     login() {
       authService
