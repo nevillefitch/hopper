@@ -33,14 +33,16 @@ public class BreweryController {
         return dao.getBrewery(id);
     }
 
-    //TODO permission for admin
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Brewery addBrewery(@RequestBody Brewery brewery) {
         return dao.addBrewery(brewery);
     }
 
-    //TODO  add permission for brewer only
+
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public boolean updateBrewery(@RequestBody Brewery brewery) {
         if (dao.updateBrewery(brewery)) {

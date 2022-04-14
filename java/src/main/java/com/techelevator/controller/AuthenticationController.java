@@ -2,9 +2,11 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
+import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -14,12 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -62,6 +63,26 @@ public class AuthenticationController {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/admin/{id}", method = RequestMethod.PUT)
+    public boolean updateBeerLoverToBrewer(@PathVariable int id) {
+        if (userDao.updateBeerLoverToBrewer(id)) {
+            return true;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found to update.");
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/admin", method = RequestMethod.PUT)
+    public List<User> listUsers() {
+        return userDao.findAll();
+    }
+
+
+
+
 
     /**
      * Object to return as body in JWT Authentication.

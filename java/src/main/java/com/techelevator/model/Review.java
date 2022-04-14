@@ -5,9 +5,27 @@ public class Review {
     private String message;
     private int score;
     private int beerId;
-    //TODO add userId to database and username to Review Model
+    private int userId;
+    private String userName;
+
 
     public Review(){
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getBeerId() {

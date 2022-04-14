@@ -3,7 +3,6 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.BeerDao;
 import com.techelevator.model.Beer;
-import com.techelevator.model.Brewery;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +33,16 @@ public class BeerController {
         return beerDao.getBeer(id);
     }
 
-    //TODO  add permission for brewer only
+
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Beer addBeer(@RequestBody Beer beer) {
         return beerDao.addBeer(beer);
     }
 
-    //TODO  add permission for brewer only
+
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public boolean updateBeer(@RequestBody Beer beer) {
         if (beerDao.updateBeer(beer)) {

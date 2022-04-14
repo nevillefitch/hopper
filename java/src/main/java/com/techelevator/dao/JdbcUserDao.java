@@ -86,6 +86,15 @@ public class JdbcUserDao implements UserDao {
         return userCreated;
     }
 
+    @Override
+    public boolean updateBeerLoverToBrewer(int userId){
+        String sql = "UPDATE users SET role = 'ROLE_BREWER' WHERE user_id = ?;";
+        int count = jdbcTemplate.update(sql, userId);
+        return  count == 1;
+    }
+
+
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
