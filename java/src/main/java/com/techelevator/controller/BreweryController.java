@@ -34,7 +34,7 @@ public class BreweryController {
     }
 
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Brewery addBrewery(@RequestBody Brewery brewery) {
@@ -42,7 +42,7 @@ public class BreweryController {
     }
 
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public boolean updateBrewery(@RequestBody Brewery brewery) {
         if (dao.updateBrewery(brewery)) {

@@ -34,7 +34,7 @@ public class BeerController {
     }
 
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Beer addBeer(@RequestBody Beer beer) {
@@ -42,7 +42,7 @@ public class BeerController {
     }
 
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public boolean updateBeer(@RequestBody Beer beer) {
         if (beerDao.updateBeer(beer)) {

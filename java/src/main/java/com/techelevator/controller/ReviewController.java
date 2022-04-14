@@ -33,8 +33,7 @@ public class ReviewController {
     }
 
 
-    //Secured can by list of roles so example: ({"ROLE_USER", "ROLE_BREWER"})
-    //@Secured({ "ROLE_USER"})
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Review addReview(@RequestBody Review review) {
