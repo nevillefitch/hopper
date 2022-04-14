@@ -1,6 +1,6 @@
 <template>
   <div class="brewery">
-    <img :src="$store.state.activeBrewery.logo" alt="brewery logo" />
+    <img class="breweryLogo" :src="$store.state.activeBrewery.logo" alt="brewery logo" />
     <h2>{{ $store.state.activeBrewery.name }}</h2>
     <p>{{ $store.state.activeBrewery.phone }}</p>
     <p>{{ $store.state.activeBrewery.email }}</p>
@@ -22,5 +22,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.breweryLogo {
+    width: 15em;
+  }
+
+
 </style>

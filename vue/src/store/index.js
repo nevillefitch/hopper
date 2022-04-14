@@ -24,7 +24,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     breweries: [],
-    activeBrewery: ''
+    activeBrewery: '',
+    activeBeers: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     }, 
     SET_ACTIVE_BREWERY(state, breweryId) {
       state.activeBrewery = state.breweries.find(brewery => brewery.breweryId == breweryId)
+    },
+    SET_ACTIVE_BEERS(state, beers){
+      state.activeBeers = beers;
     }
   }
 })

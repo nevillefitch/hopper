@@ -1,12 +1,12 @@
 <template>
   <div class="brewery-list">
-    <p>test test test</p>
+    
     <div
       v-for="brewery in $store.state.breweries"
       v-bind:key="brewery.breweryId"
       class="brewery"
     >
-      <img :src="brewery.logo" alt="brewery logo" />
+      <img class = "breweryLogo" :src="brewery.logo" alt="brewery logo" />
       <h2>{{ brewery.name }}</h2>
       <p>{{ brewery.phone }}</p>
       <p>{{ brewery.email }}</p>
@@ -45,5 +45,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  .brewery {
+    border: 1px solid black;
+  }
+  
+  .breweryLogo {
+    width: 10em;
+  }
+
 </style>
