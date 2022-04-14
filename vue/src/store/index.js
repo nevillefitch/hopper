@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+//import  find  from 'core-js/core/array'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,8 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
+//TODO: add activeBrewery
+//const activeBrewery = 
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -20,7 +23,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    breweries: []
+    breweries: [],
+    activeBrewery: ''
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,6 +45,9 @@ export default new Vuex.Store({
     },
     SET_BREWERIES(state, breweries) {
       state.breweries = breweries;
+    }, 
+    SET_ACTIVE_BREWERY(state, breweryId) {
+      state.activeBrewery = state.breweries.find(brewery => brewery.breweryId == breweryId)
     }
   }
 })

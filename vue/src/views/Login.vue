@@ -47,35 +47,44 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      activeBreweryId: "",
+      invalidCredentials: false,
     };
   },
+  //TODO: refactor to activeBrewery
+  //created() {
+    //let breweryId = this.getBreweryIdByOwnerId();
+    //  const breweryId = this.$route.params.id;
+    //this.$store.commit("SET_ACTIVE_BREWERY", breweryId);
+  //},
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            if (this.$store.state.user.authorities[0].name == "ROLE_USER"){
+            if (this.$store.state.user.authorities[0].name == "ROLE_USER") {
               alert("test alert");
-            this.$router.push({name: 'home'});
-            }
-            else if (this.$store.state.user.authorities[0].name == "ROLE_BREWER"){
-              this.$router.push({name: 'brewery'});
-            }
-            else if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
-              this.$router.push({name: 'home'});
+              this.$router.push({ name: "home" });
+            } else if (
+              this.$store.state.user.authorities[0].name == "ROLE_BREWER"
+            ) {
+              let breweryId = this.getBreweryIdByOwnerId();
+              this.$router.push({ name: "brewery", params: { id: breweryId } });
+            } else if (
+              this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
+            ) {
+              this.$router.push({ name: "home" });
             }
             // if brewer, route to brewer homepage
           }
           //this.$router.push({name: 'home'});
-          
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
           console.log(response);
 
@@ -84,13 +93,18 @@ export default {
           }
         });
     },
-    // getBreweryId() {
-    //   for (brewery in this.$store.state.breweries) {
-    //     if (brewery.owner_id == this.user.user_id) {
-          
-    //     } 
-    //   }
-    // }
-  }
+
+    getBreweryIdByOwnerId() {
+      alert(this.$store.state.user.id);
+      for (let i = 0; i < this.$store.state.breweries.length; ++i) {
+        if (
+          this.$store.state.breweries[i].ownerId == this.$store.state.user.id
+        ) {
+          return (this.activeBreweryId =
+            this.$store.state.breweries[i].breweryId);
+        }
+      }
+    },
+  },
 };
 </script>
