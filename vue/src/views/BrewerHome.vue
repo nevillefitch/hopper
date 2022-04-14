@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button>update brewery button</button>
     <brewery />
     <beer-list/>
   </div>

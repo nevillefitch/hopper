@@ -78,7 +78,7 @@ export default {
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
             ) {
-              this.$router.push({ name: "home" });
+              this.$router.push({ name: "AdminHome" });
             }
             // if brewer, route to brewer homepage
           }
