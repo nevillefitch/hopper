@@ -11,10 +11,8 @@
         <img class="beerImg" :src="beer.imagePath" alt="beerImg" />
         <h2>{{ beer.name }}</h2>
         <p>{{ beer.beerType }}</p>
-        <p>{{ beer.description }}</p>
-        <p>{{ beer.abv }}</p>
-        <p>{{ beer.price }}</p>
-        <p>{{ beer.avgScore }}</p>
+        <p>ABV {{ beer.abv }}</p>
+      
       </router-link>
     </div>
   </div>
