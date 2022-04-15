@@ -1,6 +1,8 @@
 <template>
   <div>
-      <button>adminButton</button>
+      <button>
+        <router-link :to="{name : 'AdminAddBrewery'}">Add Brewery</router-link> 
+      </button>
       <brewery-list/>
   </div>
 </template>

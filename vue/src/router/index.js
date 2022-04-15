@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import BrewerHome from '../views/BrewerHome.vue'
 import AdminHome from '../views/AdminHome.vue'
+import AdminAddBrewery from '../views/AdminAddBrewery.vue'
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/admin",
       name: "AdminHome",
       component: AdminHome,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/admin/add-brewery",
+      name: "AdminAddBrewery",
+      component: AdminAddBrewery,
       meta: {
         requiresAuth: false
       }
