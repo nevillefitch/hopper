@@ -22,6 +22,7 @@
           : "Sorry, not even peanuts - no food menu."
       }}
     </p>
+    
     <th>
       <td>Day</td>
       <td>Open</td>
@@ -29,7 +30,7 @@
     </th>
     <tr
     v-for="day in $store.state.activeBrewery.hours"
-    v-bind:key="day.hourId"
+    v-bind:key="day.dayName"
     class="hours"
     >
     <td>{{day.dayName}}</td>
