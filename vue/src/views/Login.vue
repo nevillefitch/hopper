@@ -68,13 +68,12 @@ export default {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             if (this.$store.state.user.authorities[0].name == "ROLE_USER") {
-              alert("test alert");
               this.$router.push({ name: "home" });
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_BREWER"
             ) {
               let breweryId = this.getBreweryIdByOwnerId();
-              this.$router.push({ name: "brewery", params: { id: breweryId } });
+              this.$router.push({ name: "brewerHome", params: { id: breweryId } });
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
             ) {
@@ -95,7 +94,6 @@ export default {
     },
 
     getBreweryIdByOwnerId() {
-      alert(this.$store.state.user.id);
       for (let i = 0; i < this.$store.state.breweries.length; ++i) {
         if (
           this.$store.state.breweries[i].ownerId == this.$store.state.user.id
