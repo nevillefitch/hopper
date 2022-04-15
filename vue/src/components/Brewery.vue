@@ -15,7 +15,10 @@
       {{ $store.state.activeBrewery.zipcode }}
     </p>
     <p>{{ $store.state.activeBrewery.history }}</p>
-    <p>{{ $store.state.activeBrewery.hasFood }}</p>
+    <p>{{ $store.state.activeBrewery.hasFood? 
+      "Eats and drinks available!"
+      : "Sorry, not even peanuts, no food menu."}}</p>
+    <p>{{  $store.state.activeBrewery.hasFood }}</p>
     <p>Average price: ${{ $store.state.activeBrewery.avgPrice }}</p>
   </div>
 </template>
