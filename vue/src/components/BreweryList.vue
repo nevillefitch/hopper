@@ -1,14 +1,12 @@
 <template>
   <div class="brewery-list">
-    <!-- <router-link v-bind:to="{name: 'product-detail', 
-    params: {id: product.ed}}"><td>{{ product.name }}</td></router-link> -->
-
-    <div
+       <div
       v-for="brewery in $store.state.breweries"
       v-bind:key="brewery.breweryId"
       class="brewery-card"
     >
-      <router-link v-bind:to="{name: 'brewery', params:{ id:brewery.breweryId} }">
+      <router-link v-bind:to="{name: 'brewery', 
+                  params:{ id:brewery.breweryId} }">
         <img class="breweryLogo" :src="brewery.logo" alt="brewery logo" />
         <h2>{{ brewery.name }}</h2>
         <p>{{ brewery.phone }}</p>

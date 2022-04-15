@@ -6,14 +6,16 @@
       v-bind:key="beer.beerId"
       class="beer"
     >
-      <img class="beerImg" :src="beer.imagePath" alt="beerImg" />
-      <h2>{{ beer.name }}</h2>
-      <p>{{ beer.beerType }}</p>
-      <p>{{ beer.description }}</p>
-      <p>{{ beer.abv }}</p>
-      <p>{{ beer.price }}</p>
-      <p>{{ beer.avgScore }}</p>
-      
+      <router-link v-bind:to="{name:'beerDetail', 
+        params:{id:beer.beerId }} ">
+        <img class="beerImg" :src="beer.imagePath" alt="beerImg" />
+        <h2>{{ beer.name }}</h2>
+        <p>{{ beer.beerType }}</p>
+        <p>{{ beer.description }}</p>
+        <p>{{ beer.abv }}</p>
+        <p>{{ beer.price }}</p>
+        <p>{{ beer.avgScore }}</p>
+      </router-link>
     </div>
   </div>
 </template>

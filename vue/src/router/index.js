@@ -8,6 +8,7 @@ import store from '../store/index'
 import BrewerHome from '../views/BrewerHome.vue'
 import AdminHome from '../views/AdminHome.vue'
 import BreweryView from '../views/BreweryView.vue'
+import BeerDetailView from '../views/BeerDetailView.vue'
 
 Vue.use(Router)
 
@@ -53,6 +54,14 @@ const router = new Router({
       name: "register",
       component: Register,
       meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/beerdetail/:id",
+      name: "beerDetail",
+      component: BeerDetailView,
+      meta:{
         requiresAuth: false
       }
     },
