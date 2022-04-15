@@ -19,9 +19,24 @@
       {{
         $store.state.activeBrewery.hasFood
           ? "Eats and drinks available!"
-          : "Sorry, not even peanuts, no food menu."
+          : "Sorry, not even peanuts - no food menu."
       }}
     </p>
+    
+    <th>
+      <td>Day</td>
+      <td>Open</td>
+      <td>Close</td>
+    </th>
+    <tr
+    v-for="day in $store.state.activeBrewery.hours"
+    v-bind:key="day.dayName"
+    class="hours"
+    >
+    <td>{{day.dayName}}</td>
+    <td>{{day.open}}</td>
+    <td>{{day.close}}</td>
+    </tr>
       <!-- Whoever is doing CSS: may want to set width in css  -->
     <img src="@/resources/dollarSign.png" 
     alt="$"

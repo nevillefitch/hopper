@@ -1,15 +1,17 @@
 <template>
-<beer-detail/>
+  <div>
+    <beer-detail />
+    <review-list />
+  </div>
 </template>
 
 <script>
-import BeerDetail from '../components/BeerDetail.vue'
+import BeerDetail from "../components/BeerDetail.vue";
+import ReviewList from "../components/ReviewList.vue";
 export default {
-  components: { BeerDetail },
-
-}
+  components: { BeerDetail, ReviewList },
+};
 </script>
 
 <style>
-
 </style>

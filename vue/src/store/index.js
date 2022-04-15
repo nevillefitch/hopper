@@ -26,6 +26,8 @@ export default new Vuex.Store({
     breweries: [],
     activeBrewery: '',
     activeBeers: [],
+    activeBeer: '',
+    activeReviews: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -52,6 +54,12 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_BEERS(state, beers){
       state.activeBeers = beers;
+    },
+    SET_ACTIVE_BEER(state, beerId) {
+      state.activeBeer = state.activeBeers.find(beer => beer.beerId == beerId)
+    },
+    SET_ACTIVE_REVIEWS(state, reviews){
+      state.activeReviews = reviews;
     }
   }
 })
