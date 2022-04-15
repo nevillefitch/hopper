@@ -34,7 +34,7 @@ public class BreweryController {
     }
 
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Brewery addBrewery(@RequestBody Brewery brewery) {
