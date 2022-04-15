@@ -7,7 +7,7 @@
     <p>Style: {{ $store.state.activeBeer.beerType }}</p>
     <p>{{ $store.state.activeBeer.description }}</p>
     <p>ABV: {{ $store.state.activeBeer.abv }}</p>
-    <p>${{ $store.state.activeBeer.price }}</p>
+    <p>Price: ${{($store.state.activeBeer.price).toFixed(2)}}</p>
     <p>Average Rating: {{ $store.state.activeBeer.avgScore }}</p>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
     this.getBeer();
   }
 };
+
 </script>
 
 <style>

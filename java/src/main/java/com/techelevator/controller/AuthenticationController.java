@@ -75,9 +75,9 @@ public class AuthenticationController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/admin", method = RequestMethod.PUT)
-    public List<User> listUsers() {
-        return userDao.findAll();
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public List<User> findBeerLovers() {
+        return userDao.findBeerLovers();
     }
 
 

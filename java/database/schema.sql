@@ -185,6 +185,11 @@ CREATE TABLE beer_review (
 	CONSTRAINT FK_review_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES (1, 'Great beer', 5, 1);
+INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES (2, 'Awesome beer', 3, 1);
+INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES (1, 'Fair beer', 1, 2);
+INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES (3, 'Drinkable beer', 2, 2);
+INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES (1, 'The BEST beer', 5, 1);
 
 CREATE TABLE event (
 	event_id serial,
