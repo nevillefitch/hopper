@@ -9,11 +9,17 @@ import BrewerHome from '../views/BrewerHome.vue'
 import AdminHome from '../views/AdminHome.vue'
 import BreweryView from '../views/BreweryView.vue'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import BeerDetailView from '../views/BeerDetailView.vue'
 =======
 import AdminAddBrewery from '../views/AdminAddBrewery.vue'
 
 >>>>>>> 152a72b23bd83fefadff0b89cd4918dc3625b681
+=======
+import BeerDetailView from '../views/BeerDetailView.vue'
+import AdminAddBrewery from '../views/AdminAddBrewery.vue'
+
+>>>>>>> 380519eb759d2c5b22ffbcd7fad2fc6ebd79da42
 
 Vue.use(Router)
 
