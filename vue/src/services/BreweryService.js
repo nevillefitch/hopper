@@ -1,10 +1,11 @@
 import axios from "axios";
-const http = axios.create({
-    baseURL: "http://localhost:3000/breweries"
-});
+
 
 export default {
     getBreweryList(){
-        return http.get(``);
+        return axios.get(`/breweries`);
+    }, 
+    createBrewery(brewery){
+        return axios.post(`/breweries`,brewery)
     }
 }

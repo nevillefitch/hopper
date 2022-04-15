@@ -8,7 +8,12 @@ import store from '../store/index'
 import BrewerHome from '../views/BrewerHome.vue'
 import AdminHome from '../views/AdminHome.vue'
 import BreweryView from '../views/BreweryView.vue'
+<<<<<<< HEAD
 import BeerDetailView from '../views/BeerDetailView.vue'
+=======
+import AdminAddBrewery from '../views/AdminAddBrewery.vue'
+
+>>>>>>> 152a72b23bd83fefadff0b89cd4918dc3625b681
 
 Vue.use(Router)
 
@@ -86,6 +91,14 @@ const router = new Router({
       path: "/admin",
       name: "AdminHome",
       component: AdminHome,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/admin/add-brewery",
+      name: "AdminAddBrewery",
+      component: AdminAddBrewery,
       meta: {
         requiresAuth: false
       }
