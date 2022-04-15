@@ -21,6 +21,7 @@ public class JdbcReviewDao implements ReviewDao {
 
     /**
      * Get review by Id
+     *
      * @param id
      * @return requested Review
      */
@@ -46,8 +47,9 @@ public class JdbcReviewDao implements ReviewDao {
 
     /**
      * Get reviews for selected beer by beer ID
+     *
      * @param beerId
-     * @return  Beers
+     * @return Beers
      */
     @Override
     public List<Review> getReviews(int beerId) {
@@ -55,9 +57,10 @@ public class JdbcReviewDao implements ReviewDao {
         String sql = "SELECT r.review_id, beer_id, review_message, score, u.user_id, username " +
                 "FROM beer_review AS r " +
                 "JOIN users AS u " +
-                "ON r.user_id = u.user_id;";
+                "ON r.user_id = u.user_id " +
+                "WHERE beer_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, beerId);
         while (results.next()) {
             Review review = mapRowToReview(results);
             reviews.add(review);
@@ -68,8 +71,9 @@ public class JdbcReviewDao implements ReviewDao {
 
     /**
      * Add review to beer
+     *
      * @param review
-     * @return  added review
+     * @return added review
      */
     @Override
     public Review addReview(Review review) {
@@ -102,7 +106,7 @@ public class JdbcReviewDao implements ReviewDao {
         review.setUserId(rowSet.getInt("user_id"));
         review.setUserName(rowSet.getString("username"));
 
-        return  review;
+        return review;
     }
 
 

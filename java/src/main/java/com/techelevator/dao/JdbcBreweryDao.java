@@ -128,6 +128,19 @@ public class JdbcBreweryDao implements BreweryDao {
         return hours;
     }
 
+    public List<String> getImages(int breweryId) {
+        List<String> images = new ArrayList<>();
+        String sql = "SELECT image_path " +
+                "FROM image " +
+                "WHERE brewery_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
+        while (results.next()) {
+                String s = results.getString("image_path");
+                images.add(s);
+        }
+        return images;
+    }
+
     private Hours mapRowToHours(SqlRowSet rowSet) {
         Hours hours = new Hours();
         hours.setDayName(rowSet.getString("name"));
@@ -155,6 +168,7 @@ public class JdbcBreweryDao implements BreweryDao {
         brewery.setOwnerId(rowSet.getInt("owner_id"));
         brewery.setAvgPrice(rowSet.getDouble("avg_price"));
         brewery.setHours(getHours(brewery.getBreweryId()));
+        brewery.setImages(getImages(brewery.getBreweryId()));
 
         return brewery;
 

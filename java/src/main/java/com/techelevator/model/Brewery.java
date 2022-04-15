@@ -18,8 +18,16 @@ public class Brewery {
     private int ownerId;
     private double avgPrice;
     private List<Hours> hours;
+    private List<String> images;
 
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 
     public Brewery() {
     }
