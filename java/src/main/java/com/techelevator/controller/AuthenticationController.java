@@ -64,7 +64,7 @@ public class AuthenticationController {
         }
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/admin/{id}", method = RequestMethod.PUT)
     public boolean updateBeerLoverToBrewer(@PathVariable int id) {
         if (userDao.updateBeerLoverToBrewer(id)) {
@@ -74,7 +74,7 @@ public class AuthenticationController {
         }
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public List<User> findBeerLovers() {
         return userDao.findBeerLovers();
