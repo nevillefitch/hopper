@@ -15,11 +15,20 @@
       {{ $store.state.activeBrewery.zipcode }}
     </p>
     <p>{{ $store.state.activeBrewery.history }}</p>
-    <p>{{ $store.state.activeBrewery.hasFood? 
-      "Eats and drinks available!"
-      : "Sorry, not even peanuts, no food menu."}}</p>
-    <p>{{  $store.state.activeBrewery.hasFood }}</p>
-    <p>Average price: ${{ $store.state.activeBrewery.avgPrice }}</p>
+    <p>
+      {{
+        $store.state.activeBrewery.hasFood
+          ? "Eats and drinks available!"
+          : "Sorry, not even peanuts, no food menu."
+      }}
+    </p>
+      <!-- Whoever is doing CSS: may want to set width in css  -->
+    <img src="@/resources/dollarSign.png" 
+    alt="$"
+    v-for="d in getIntegerAvgPrice()"
+    v-bind:key="d"
+    />
+
   </div>
 </template>
 
@@ -29,6 +38,24 @@ export default {
   methods: {
     getBrewery() {
       this.$store.commit("SET_ACTIVE_BREWERY", this.$route.params.id);
+    },
+
+    /*
+    TODO: for final review: Do we all agree on these ratings?
+      $ - avg beer price < $5.00
+      $$ - avg beer price between $5.00 and $9.00  (inclusive)
+      $$$ - avg beer price > $9.00
+       */
+    getIntegerAvgPrice(){
+      let avgPriceRating = 1;
+      let dollarPrice =  this.$store.state.activeBrewery.avgPrice;
+        if(dollarPrice >= 5.00 && dollarPrice <= 9.00 ){
+          avgPriceRating = 2;
+        }else if(dollarPrice>9){
+          avgPriceRating = 3;
+        }
+
+        return avgPriceRating;
     },
   },
   created() {
@@ -40,5 +67,8 @@ export default {
 <style scoped>
 .breweryLogo {
   width: 15em;
+}
+img{
+  width: 1em;
 }
 </style>
