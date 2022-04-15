@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Brewery;
+import com.techelevator.model.Hours;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -80,8 +81,8 @@ public class JdbcBreweryDao implements BreweryDao {
     public Brewery addBrewery(Brewery brewery) {
         Brewery newBrewery = new Brewery();
         String sql = "INSERT INTO brewery(name, owner_id, is_active) " +
-                     "VALUES(?, ?,'true') " +
-                     "RETURNING brewery_id; ";
+                "VALUES(?, ?,'true') " +
+                "RETURNING brewery_id; ";
         try {
             int newBreweryId = jdbcTemplate.queryForObject(sql, int.class, brewery.getName(), brewery.getOwnerId());
             newBrewery = getBrewery(newBreweryId);
@@ -112,6 +113,30 @@ public class JdbcBreweryDao implements BreweryDao {
         return count == 1;
     }
 
+    public List<Hours> getHours(int breweryId) {
+        List<Hours> hours = new ArrayList<>();
+        String sql = "SELECT name, abbreviation, open, close " +
+                "FROM hours " +
+                "LEFT JOIN day " +
+                "ON day.day_id = hours.day_id " +
+                "WHERE brewery_id = ? ;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
+        while (results.next()) {
+                    Hours h = mapRowToHours(results);
+                    hours.add(h);
+        }
+        return hours;
+    }
+
+    private Hours mapRowToHours(SqlRowSet rowSet) {
+        Hours hours = new Hours();
+        hours.setDayName(rowSet.getString("name"));
+        hours.setDayAbbreviation(rowSet.getString("abbreviation"));
+        hours.setOpen(rowSet.getString("open"));
+        hours.setClose(rowSet.getString("close"));
+        return hours;
+    }
+
     private Brewery mapRowToBrewery(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
 
@@ -129,6 +154,7 @@ public class JdbcBreweryDao implements BreweryDao {
         brewery.setHasFood(rowSet.getBoolean("has_food"));
         brewery.setOwnerId(rowSet.getInt("owner_id"));
         brewery.setAvgPrice(rowSet.getDouble("avg_price"));
+        brewery.setHours(getHours(brewery.getBreweryId()));
 
         return brewery;
 

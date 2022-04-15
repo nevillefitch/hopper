@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Brewery {
     private int breweryId;
     private String name;
@@ -15,6 +17,7 @@ public class Brewery {
     private boolean hasFood;
     private int ownerId;
     private double avgPrice;
+    private List<Hours> hours;
 
 
 
@@ -137,6 +140,14 @@ public class Brewery {
 
     public void setHasFood(boolean hasFood) {
         this.hasFood = hasFood;
+    }
+
+    public List<Hours> getHours() {
+        return hours;
+    }
+
+    public void setHours(List<Hours> hours) {
+        this.hours = hours;
     }
 
     @Override
