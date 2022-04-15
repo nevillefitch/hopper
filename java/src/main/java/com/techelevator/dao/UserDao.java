@@ -17,4 +17,6 @@ public interface UserDao {
     boolean create(String username, String password, String role);
 
     boolean updateBeerLoverToBrewer(int id);
+
+    List<User> findBeerLovers();
 }

@@ -6,5 +6,8 @@ const http = axios.create({
 export default {
     getBreweryList(){
         return http.get(``);
+    }, 
+    createBrewery(brewery){
+        return http.post(``,brewery)
     }
 }
