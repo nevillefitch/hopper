@@ -60,6 +60,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_REVIEWS(state, reviews){
       state.activeReviews = reviews;
+    },
+    CHANGE_ACTIVE_BEER_STATUS(state){
+      state.activeBeer.active = !state.activeBeer.active;
     }
   }
 })

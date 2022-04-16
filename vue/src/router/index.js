@@ -8,19 +8,14 @@ import store from '../store/index'
 import BrewerHome from '../views/BrewerHome.vue'
 import AdminHome from '../views/AdminHome.vue'
 import BreweryView from '../views/BreweryView.vue'
-<<<<<<< HEAD
-<<<<<<< HEAD
 import BeerDetailView from '../views/BeerDetailView.vue'
-=======
 import AdminAddBrewery from '../views/AdminAddBrewery.vue'
 import AddReviewView from '../views/AddReviewView.vue'
+import BreweryUpdateView from '../views/BreweryUpdateView.vue'
+import BrewerBeerDetail from '../views/BrewerBeerDetail.vue'
+import AddBeer from '../views/AddBeer.vue'
 
->>>>>>> 152a72b23bd83fefadff0b89cd4918dc3625b681
-=======
-import BeerDetailView from '../views/BeerDetailView.vue'
-import AdminAddBrewery from '../views/AdminAddBrewery.vue'
 
->>>>>>> 380519eb759d2c5b22ffbcd7fad2fc6ebd79da42
 
 Vue.use(Router)
 
@@ -91,6 +86,30 @@ const router = new Router({
       path: "/brewerhome/:id",
       name: "brewerHome",
       component: BrewerHome,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/updatebrewery/:id",
+      name: "breweryUpdate",
+      component: BreweryUpdateView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/addbeer/",
+      name: "addBeer",
+      component: AddBeer,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/brewer/beerdetail/:id",
+      name: "brewerBeer",
+      component: BrewerBeerDetail,
       meta: {
         requiresAuth: false
       }
