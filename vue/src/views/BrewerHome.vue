@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button>update brewery button</button>
+    <button>
+      <router-link v-bind:to="{name: 'breweryUpdate', params:{id:this.$route.params.id}}">Update Brewery</router-link>
+    </button>
     <brewery />
     <beer-list/>
   </div>
