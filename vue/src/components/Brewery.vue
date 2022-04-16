@@ -12,7 +12,7 @@
     <p>
       {{ $store.state.activeBrewery.city }},
       {{ $store.state.activeBrewery.state }}
-      {{ $store.state.activeBrewery.zipcode }}
+      {{ $store.state.activeBrewery.zip }}
     </p>
     <p>{{ $store.state.activeBrewery.history }}</p>
     <p>
@@ -23,11 +23,11 @@
       }}
     </p>
     
-    <th>
-      <td>Day</td>
-      <td>Open</td>
-      <td>Close</td>
-    </th>
+    <tr>
+      <th>Day</th>
+      <th>Open</th>
+      <th>Close</th>
+    </tr>
     <tr
     v-for="day in $store.state.activeBrewery.hours"
     v-bind:key="day.dayName"

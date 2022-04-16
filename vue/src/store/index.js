@@ -63,6 +63,9 @@ export default new Vuex.Store({
     },
     CHANGE_ACTIVE_BEER_STATUS(state){
       state.activeBeer.active = !state.activeBeer.active;
+    },
+    CHANGE_BREWERY_HAS_FOOD(state){
+      state.activeBrewery.hasFood = !state.activeBrewery.hasFood;
     }
   }
 })

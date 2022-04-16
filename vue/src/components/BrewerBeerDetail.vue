@@ -35,7 +35,7 @@ export default {
           this.getBeer();
         })
         .catch((error) => {
-          this.handleErrorResponse(error, "creating");
+          this.handleErrorResponse(error, "updating");
         });
     },
      handleErrorResponse(error, verb) {
@@ -43,15 +43,15 @@ export default {
         this.errorMsg =
           "Error " +
           verb +
-          " brewery. Response received was '" +
+          " beer. Response received was '" +
           error.response.statusText +
           "'.";
       } else if (error.request) {
         this.errorMsg =
-          "Error " + verb + " brewery. Server could not be reached.";
+          "Error " + verb + " beer. Server could not be reached.";
       } else {
         this.errorMsg =
-          "Error " + verb + " brewery. Request could not be created.";
+          "Error " + verb + " beer. Request could not be created.";
       }
      },
   },

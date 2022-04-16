@@ -7,5 +7,8 @@ export default {
     }, 
     createBrewery(brewery){
         return axios.post(`/breweries`,brewery)
+    },
+    updateBrewery(brewery){
+        return axios.put(`/breweries`, brewery)
     }
 }
