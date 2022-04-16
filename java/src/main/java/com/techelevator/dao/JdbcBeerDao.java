@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Beer;
+import com.techelevator.model.BeerType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,19 @@ public class JdbcBeerDao implements BeerDao{
         return beers;
     }
 
+
+
+    public List<BeerType> getBeerTypes() {
+        List<BeerType> beerTypes = new ArrayList<>();
+        String sql = "SELECT beer_type_id, type_name FROM beer_type;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            BeerType beerType = mapRowToBeerType(results);
+            beerTypes.add(beerType);
+        }
+        return beerTypes;
+    }
+
     /**
      * Used by brewer to create beer in their brewery
      * @param beer
@@ -121,4 +135,14 @@ public class JdbcBeerDao implements BeerDao{
 
         return beer;
     }
+
+    public BeerType mapRowToBeerType(SqlRowSet rowSet) {
+        BeerType beerType = new BeerType();
+
+        beerType.setBeerTypeId(rowSet.getInt("beer_type_id"));
+        beerType.setTypeName(rowSet.getString("type_name"));
+
+        return beerType;
+    }
+
 }

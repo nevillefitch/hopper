@@ -163,7 +163,7 @@ CREATE TABLE beer (
 	img_path varchar(500),
 	description varchar(1000),
 	price numeric (5,2) NOT NULL,
-	abv decimal(2,1) NOT NULL,
+	abv decimal(3,1) NOT NULL,
 	is_active bool DEFAULT 'true',
 	beer_type_id int,
 

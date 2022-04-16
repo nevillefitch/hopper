@@ -4,7 +4,7 @@
       <router-link v-bind:to="{name: 'breweryUpdate', params:{id:this.$route.params.id}}">Update Brewery</router-link>
     </button>
     <brewery />
-    <router-link v-bind:to="{name: 'addBeer'}">Add Beer</router-link>
+    <router-link v-bind:to="{name: 'addBeer' , params: {id : $store.state.activeBrewery.breweryId} }">Add Beer</router-link>
     <beer-list/>
   </div>
 </template>
