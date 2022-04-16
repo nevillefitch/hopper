@@ -1,5 +1,6 @@
 <template>
   <div class="beer-detail">
+    
     <p>Inside beer detail</p>
 
     <img class="beerImg" :src="$store.state.activeBeer.imagePath" alt="beerImg" />
@@ -9,7 +10,12 @@
     <p>ABV: {{ $store.state.activeBeer.abv }}</p>
     <p>Price: ${{($store.state.activeBeer.price).toFixed(2)}}</p>
     <p>Average Rating: {{ $store.state.activeBeer.avgScore }}</p>
+
+     <button>
+      <router-link :to="{ name: 'addReview', params: {id:$store.state.activeBeer.beerId} }">Write Review</router-link>
+    </button>
   </div>
+  
 </template>
 
 <script>

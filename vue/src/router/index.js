@@ -10,6 +10,7 @@ import AdminHome from '../views/AdminHome.vue'
 import BreweryView from '../views/BreweryView.vue'
 import BeerDetailView from '../views/BeerDetailView.vue'
 import AdminAddBrewery from '../views/AdminAddBrewery.vue'
+import AddReviewView from '../views/AddReviewView.vue'
 
 
 Vue.use(Router)
@@ -67,6 +68,16 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    
+    {
+      path: "/addreview",
+      name: "addReview",
+      component: AddReviewView,
+      meta:{
+        requiresAuth: true
+      }
+      
+    },
     {
       path: "/brewerhome/:id",
       name: "brewerHome",
@@ -93,7 +104,7 @@ const router = new Router({
       }
     },
     {
-      path: "/admin/add-brewery",
+      path: "/admin/addBrewery",
       name: "AdminAddBrewery",
       component: AdminAddBrewery,
       meta: {

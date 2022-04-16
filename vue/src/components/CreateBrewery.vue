@@ -64,7 +64,7 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.$router.push({ name: "AdminHome" });
-            alert("success");
+            alert("Brewery Created");
           }
         })
         .catch((error) => {
@@ -74,6 +74,7 @@ export default {
     upgradeUser() {
       AuthService.updateBeerLoverToBrewer(this.brewery.ownerId).then(
         (response) => {
+          //TODO: is this alert necessary? do we need a catch instead?
           if (response.status === 200) {
             alert("updateduserId");
           }
