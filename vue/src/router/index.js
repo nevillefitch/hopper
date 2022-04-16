@@ -12,6 +12,7 @@ import BeerDetailView from '../views/BeerDetailView.vue'
 import AdminAddBrewery from '../views/AdminAddBrewery.vue'
 import BreweryUpdateView from '../views/BreweryUpdateView.vue'
 import BrewerBeerDetail from '../views/BrewerBeerDetail.vue'
+import AddBeer from '../views/AddBeer.vue'
 
 
 
@@ -82,6 +83,14 @@ const router = new Router({
       path: "/updatebrewery/:id",
       name: "breweryUpdate",
       component: BreweryUpdateView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/addbeer/",
+      name: "addBeer",
+      component: AddBeer,
       meta: {
         requiresAuth: false
       }
