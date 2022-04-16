@@ -19,7 +19,6 @@
       <router-link v-if="!isLoggedInBrewersBrewery"
       v-bind:to="{name:'beerDetail', 
         params:{id:beer.beerId }} ">
->>>>>>> brewer-functionality
         <img class="beerImg" :src="beer.imagePath" alt="beerImg" />
         <h2>{{ beer.name }}</h2>
         <p>{{ beer.beerType }}</p>
