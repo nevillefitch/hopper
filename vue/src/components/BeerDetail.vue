@@ -1,8 +1,6 @@
 <template>
   <div class="beer-detail">
     
-    <p>Inside beer detail</p>
-
     <img class="beerImg" :src="$store.state.activeBeer.imagePath" alt="beerImg" />
     <h2>{{ $store.state.activeBeer.name }}</h2>
     <p>Style: {{ $store.state.activeBeer.beerType }}</p>

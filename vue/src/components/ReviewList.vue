@@ -1,6 +1,5 @@
 <template>
   <div class="reviews">
-    <p>inside review list</p>
     <div
       v-for="review in $store.state.activeReviews"
       v-bind:key="review.reviewId"

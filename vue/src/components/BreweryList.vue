@@ -1,17 +1,22 @@
 <template>
   <div class="brewery-list">
-       <div
+    <div
       v-for="brewery in activeBreweries"
       v-bind:key="brewery.breweryId"
       class="brewery-card"
     >
-      <router-link v-bind:to="{name: 'brewery', 
-                  params:{ id:brewery.breweryId} }">
-        <img class="breweryLogo" :src="brewery.logo" alt="brewery logo" />
+      <router-link
+        tag="a"
+        v-bind:to="{ name: 'brewery', params: { id: brewery.breweryId } }"
+      >
+        <div class="brewery-logo">
+          <img class="breweryLogo" :src="brewery.logo" alt="brewery logo" />
+        </div>
+
         <h2>{{ brewery.name }}</h2>
-        <p>{{ brewery.phone }}</p>
-        <p>{{ brewery.email }}</p>
-        <p>{{ brewery.city }}</p>
+        <!-- <p>{{ brewery.phone }}</p> -->
+        <!-- <p>{{ brewery.email }}</p> -->
+        <p>{{ brewery.city }}, {{ brewery.state }}</p>
       </router-link>
     </div>
   </div>
@@ -41,9 +46,9 @@ export default {
     },
   },
   computed: {
-     activeBreweries() {
-      return this.$store.state.breweries.filter(brewery => brewery.active);
-    }
+    activeBreweries() {
+      return this.$store.state.breweries.filter((brewery) => brewery.active);
+    },
   },
   created() {
     this.getBreweries();
@@ -52,11 +57,44 @@ export default {
 </script>
 
 <style scoped>
-.brewery-card {
-  border: 1px solid black;
+.brewery-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-
+.brewery-card {
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: rgb(110, 160, 110);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  box-sizing: content-box;
+  padding: 10px;
+  margin: 6px;
+}
+.brewery-card:hover {
+  background-color: rgb(182, 216, 182);
+}
+.brewery-logo {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
 .breweryLogo {
   width: 10em;
 }
+h2, p {
+ 
+  text-align: center;
+   color: black;
+}
+h2{
+ font-size: 1.5em;
+}
+
 </style>

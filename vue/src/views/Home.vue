@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p></p>
-    
     <brewery-list></brewery-list>
   </div>
 </template>
