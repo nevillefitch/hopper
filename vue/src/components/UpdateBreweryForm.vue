@@ -53,26 +53,34 @@
             : "Make Food Available"
       }}</button>
     </div>
-    <tr>
-      <th>Day</th>
-      <th>Open</th>
-      <th>Close</th>
-    </tr>
-    <tr
-    v-for="day in $store.state.activeBrewery.hours"
-    v-bind:key="day.dayName"
-    class="hours"
-    >
-    <td>{{day.dayName}} </td>
-    <td><input type="time" v-model="day.open"/></td>
-    <td><input type="time" v-model="day.close"/></td>
-    </tr>
+    <div class = "fields">
+      <tr>
+        <th>Day</th>
+        <th>Open</th>
+        <th>Close</th>
+      </tr>
+      <tr
+      v-for="day in $store.state.activeBrewery.hours"
+      v-bind:key="day.dayName"
+      class="hours"
+      >
+      <td>{{day.dayName}} </td>
+      <td><input type="time" v-model="day.open"/></td>
+      <td><input type="time" v-model="day.close"/></td>
+      </tr>
+      <p>To indicate closed for the day please set both close and open times to 12:00 am.</p>
+    </div>
+    
   <div class="submit">
       <button
         type="submit"
         v-on:click="updateBrewery();">
         Update
       </button>
+    </div>
+    <div v-if="!this.$store.state.activeBrewery.active" class = "fields">
+      <button name="activeButton" v-on:click="updateActiveStatus(); updateBrewery()">
+        Activate Brewery</button>
     </div>
   </form>
 </template>
@@ -84,6 +92,9 @@ export default {
   methods: {
     updateHasFood() {
       this.$store.commit("CHANGE_BREWERY_HAS_FOOD")
+    },
+    updateActiveStatus() {
+      this.$store.commit("CHANGE_BREWERY_ACTIVE_STATUS")
     },
       updateBrewery() {
       BreweryService.updateBrewery(this.$store.state.activeBrewery)
