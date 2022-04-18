@@ -1,7 +1,7 @@
 <template>
   <div class="brewery-list">
        <div
-      v-for="brewery in $store.state.breweries"
+      v-for="brewery in activeBreweries"
       v-bind:key="brewery.breweryId"
       class="brewery-card"
     >
@@ -39,6 +39,11 @@ export default {
           }
         });
     },
+  },
+  computed: {
+     activeBreweries() {
+      return this.$store.state.breweries.filter(brewery => brewery.active);
+    }
   },
   created() {
     this.getBreweries();

@@ -22,6 +22,10 @@
       <input name="email" type="email" v-model="$store.state.activeBrewery.email"/>
     </div>
     <div class = "fields">
+      <label for="website">Website: </label>
+      <input name="website" type="url" v-model="$store.state.activeBrewery.website"/>
+    </div>
+    <div class = "fields">
       <label for="address">Address: </label>
       <input name="address" type="text" v-model="$store.state.activeBrewery.streetAddress"/>
     </div>

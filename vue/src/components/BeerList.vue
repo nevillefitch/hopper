@@ -45,7 +45,7 @@ export default {
   computed: {
     isLoggedInBrewersBrewery() {
          return this.$store.state.activeBrewery.ownerId == this.$store.state.user.id
-    }
+    },
   }
 };
 </script>

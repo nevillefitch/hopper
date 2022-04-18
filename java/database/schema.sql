@@ -41,7 +41,8 @@ CREATE TABLE brewery (
 	brewery_id serial,
 	name varchar(50) UNIQUE NOT NULL,
 	email varchar(50) UNIQUE,
-	phone varchar(10) UNIQUE,
+	website_url varchar (150),
+	phone varchar(12) UNIQUE,
 	street_address varchar(50) UNIQUE,
 	city varchar(25),
 	state char(2),
@@ -56,16 +57,16 @@ CREATE TABLE brewery (
 	CONSTRAINT FK_owner FOREIGN KEY (owner_id) REFERENCES users(user_id)
 );
 
-INSERT INTO brewery (name, email, phone, street_address, city, state, zipcode, history, logo_img, has_food, owner_id)
+INSERT INTO brewery (name, email, phone, street_address, city, state, zipcode, history, logo_img, has_food, owner_id, website_url)
 VALUES ('Cigar City Brewery', 'smokybrews@gmail.com', '8133486363', '3924 W Spruce St.', 'Tampa', 'FL', '33607',
 		'Our home since 2009, the Spruce Street Brewery & Taproom offers 24 Cigar City Brewing beers poured inside the same facility where the very first batches of Jai Alai IPA and other CCB favorites were brewed. A full-service kitchen offers Tampa-inspired cuisine seven days a week, with each menu item designed to complement an offering of CCB ales and lagers which includes many beers only available in our Spruce Street Taproom. Family-friendly and inviting, the Spruce Street Taproom offers an immersive beer experience with flights, pints, growler fills, and packaged beer to go poured by Cicerone Certified Beer Servers alongside CCB apparel, barwear, and merchandise.',
 		'https://www.cigarcitybrewing.com/wp-content/themes/cigarcity/assets/images/Full-Color-CCb-Logo.svg', 'true',
-		(SELECT user_id FROM users WHERE username = 'brewer1'));
-INSERT INTO brewery (name, email, phone, street_address, city, state, zipcode, history, logo_img, has_food, owner_id)
+		(SELECT user_id FROM users WHERE username = 'brewer1'), 'https://www.cigarcitybrewing.com/');
+INSERT INTO brewery (name, email, phone, street_address, city, state, zipcode, history, logo_img, has_food, owner_id, website_url)
 VALUES('Triple G-ddess Tap Room', 'info@unityvibrationkombucha.com','7342774063', '93 Ecorce Rd', 'Ypsilanti', 'MI', '48197',
 	   'At Unity Vibration Kombucha, we produce the best tasting and highest quality Kombucha Beer and Tea in the world. We transform the way people think about Kombucha, while always staying true to its Authenticity, and innovate to improve the lives of beverage consumers, our employees, our community and the planet.',
 	    'https://unityvibrationkombucha.com/wp-content/uploads/2019/09/cropped-Unity_Vibration_Graphic_Asset_singing_Bowl_Kombucha-2.png', 'false',
-	   (SELECT user_id FROM users WHERE username = 'brewer2'));
+	   (SELECT user_id FROM users WHERE username = 'brewer2'), 'https://unityvibrationkombucha.com/');
 INSERT INTO brewery(name, email, phone, street_address, city, state, zipcode, history, logo_img, has_food, owner_id)
 VALUES('Flying Dog Brewery', 'jim@flyingdogbrewery.com', '8902774063', '4607 Wedgewood Blvd', 'Frederick', 'MD', '21703',
 	   E'More than 30 years ago, a group of oxygen- and alcohol-deprived amatuer hikers convened in a Pakistan hotel room after summiting the world\'s deadliest mountain. There, Flying Dog was born.',
@@ -146,6 +147,11 @@ INSERT INTO hours (brewery_id, day_id, open, close)
 VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),
 		(SELECT day_id FROM day WHERE abbreviation = 'Sat'),
 		'17:00:00', '23:00:00');
+
+INSERT INTO hours (brewery_id, day_id, open, close)
+VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),
+		(SELECT day_id FROM day WHERE abbreviation = 'Sun'),
+		'00:00:00', '00:00:00');
 
 
 CREATE TABLE beer_type (

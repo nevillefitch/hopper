@@ -8,6 +8,8 @@
     <h2>{{ $store.state.activeBrewery.name }}</h2>
     <p>{{ $store.state.activeBrewery.phone }}</p>
     <p>{{ $store.state.activeBrewery.email }}</p>
+    <a :href="$store.state.activeBrewery.website" target="_blank">
+      {{ $store.state.activeBrewery.name }} Homepage</a>
     <p>{{ $store.state.activeBrewery.streetAddress }}</p>
     <p>
       {{ $store.state.activeBrewery.city }},
@@ -29,7 +31,7 @@
       <th>Close</th>
     </tr>
     <tr
-    v-for="day in $store.state.activeBrewery.hours"
+    v-for="day in daysOpen"
     v-bind:key="day.dayName"
     class="hours"
     >
@@ -72,6 +74,11 @@ export default {
 
         return avgPriceRating;
     },
+  },
+  computed: {
+    daysOpen() {
+      return this.$store.state.activeBrewery.hours.filter(day => day.open != day.close);
+    }
   },
   created() {
     this.getBrewery();
