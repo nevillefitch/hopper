@@ -105,15 +105,20 @@ export default {
 </script>
 
 <style>
-
+body {
+  background-color: rgb(230, 255, 246);
+  margin-left:0;
+  margin-right:0;
+}
 header{
-  width: auto;
-  background-color: rgb(35, 156, 35);
+  width: 100%;
+  background-color: rgb(110, 160, 110);
 }
 nav{
   border: 1pm solid black;
 }
 .hopperLogo {
   width: 25%;
+  padding: 1em;
 }
 </style>

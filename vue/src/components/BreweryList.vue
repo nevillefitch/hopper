@@ -10,13 +10,15 @@
           <div class="card__header">
             <!-- <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>   -->
             <h2 class="card__title">{{ brewery.name }}</h2>
+            <p class="price__container"><img class="card__price"  src="@/resources/dollarSign.png" alt="$" v-for="d in getIntegerAvgPrice(brewery.breweryId)" v-bind:key="d"/></p>
             <p class="card__city__state">{{ brewery.city }}, {{ brewery.state }}</p>
           </div>
-
+          <!-- Inside of Card Detail -->
+         
           <p class="card__description">{{ brewery.phone }}</p>
           <p class="card__description">{{ brewery.email }}</p>
-
-         
+          
+        
         </div>
 
       </router-link>
@@ -45,6 +47,18 @@ export default {
             this.errorMsg = "Unknown error. Request could not be completed.";
           }
         });
+    },
+    getIntegerAvgPrice(id){
+      let avgPriceRating = 1;
+      let activeBrewery = this.$store.state.breweries.find(brewery => brewery.breweryId == id);
+      let dollarPrice = activeBrewery.avgPrice;
+        if(dollarPrice >= 5.00 && dollarPrice <= 9.00 ){
+          avgPriceRating = 2;
+        }else if(dollarPrice>9){
+          avgPriceRating = 3;
+        }
+
+        return avgPriceRating;
     },
   },
   computed: {
@@ -80,9 +94,9 @@ export default {
   display: flex;
   justify-content: center;
 }
-a {
+/* a {
   text-decoration: none;
-}
+} */
 .breweryLogo {
   width: 10em;
 }
@@ -106,21 +120,24 @@ a {
 .cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2em;
   /* justify deleted will space left first */
   justify-content: space-evenly;
-  margin: 4rem 5vw;
+  margin: 4rem 2vw;
   padding: 0;
   list-style-type: none;
 }
 
+
+
 .card {
   /* I don't think we need the border if background is green */
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   position: relative;
   display: block;
-  height: 100%;  
+  height: 300px;
+  width: 300px;  
   border-radius: calc(40 * 1px);
   overflow: hidden;
   text-decoration: none;
@@ -141,6 +158,17 @@ a {
 
 }
 
+.card__price {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.price__container {
+  display: flex;
+  flex-direction: row;
+}
+
 .card__overlay {
   position: absolute;
   bottom: 0;
@@ -159,11 +187,13 @@ a {
 
 .card__header {
   position: relative;
+  
   display: flex;
   align-items: center;
-  gap: 2em;
+  gap: 1em;
   padding: 1em;
-  border-radius: calc(40 * 1px) 0 0 0;    
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
   background-color: rgb(223, 217, 217);
   transform: translateY(-100%);
   transition: .2s ease-in-out;
@@ -178,10 +208,10 @@ a {
   z-index: 1;
 }
 
-.card__arc path {
+/* .card__arc path {
   fill:  rgb(223, 217, 217);
   d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
-}       
+}        */
 
 .card:hover .card__header {
   transform: translateY(0);
@@ -215,7 +245,7 @@ a {
 }
 
 .card__description {
-  padding: 0 2em 2em;
+  padding: 0 1em 1em;
   margin: 0;
   color: grey;
   font-family: "MockFlowFont";   
