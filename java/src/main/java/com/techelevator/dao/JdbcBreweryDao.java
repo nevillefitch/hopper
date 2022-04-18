@@ -92,6 +92,8 @@ public class JdbcBreweryDao implements BreweryDao {
         return newBrewery;
     }
 
+  
+
 
     /**
      * used by a brewer to add/update the information associated with their brewery (email, phone, address, etc)
