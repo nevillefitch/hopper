@@ -7,6 +7,7 @@ public class Brewery {
     private String name;
     private String email;
     private String phone;
+    private String website;
     private String streetAddress;
     private String city;
     private String state;
@@ -20,6 +21,13 @@ public class Brewery {
     private List<Hours> hours;
     private List<String> images;
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
     public List<String> getImages() {
         return images;

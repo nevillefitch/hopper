@@ -33,7 +33,7 @@ public class JdbcBreweryDao implements BreweryDao {
     public Brewery getBrewery(int breweryId) {
         Brewery brewery = new Brewery();
         String sql = "SELECT br.brewery_id, br.name, email, phone, street_address, city, state, zipcode, " +
-                "history, logo_img, br.is_active, has_food, owner_id, AVG(price) AS avg_price " +
+                "history, logo_img, br.is_active, has_food, owner_id, website_url, AVG(price) AS avg_price " +
                 "FROM brewery AS br " +
                 "LEFT JOIN beer " +
                 "ON br.brewery_id = beer.beer_id " +
@@ -58,7 +58,7 @@ public class JdbcBreweryDao implements BreweryDao {
     public List<Brewery> getBreweries() {
         List<Brewery> breweries = new ArrayList<>();
         String sql = "SELECT br.brewery_id, br.name, email, phone, street_address, city, state, zipcode, " +
-                "history, logo_img, br.is_active, has_food, owner_id, AVG(price) AS avg_price " +
+                "history, logo_img, br.is_active, has_food, owner_id, website_url, AVG(price) AS avg_price " +
                 "FROM brewery AS br " +
                 "LEFT JOIN beer " +
                 "ON br.brewery_id = beer.beer_id " +
@@ -85,16 +85,60 @@ public class JdbcBreweryDao implements BreweryDao {
                 "RETURNING brewery_id; ";
         try {
             int newBreweryId = jdbcTemplate.queryForObject(sql, int.class, brewery.getName(), brewery.getOwnerId());
+            boolean addHoursResult = addHours(newBreweryId);
+            if (addHoursResult == false) {
+                throw new Exception();
+            }
             newBrewery = getBrewery(newBreweryId);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return newBrewery;
     }
+    
 
-  
+    public boolean addHours(int id) {
 
 
+        String sql = "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Mon'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Tue'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Wed'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Thu'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Fri'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Sat'), " +
+                "'00:00:00', '00:00:00'); " +
+
+                "INSERT INTO hours (brewery_id, day_id, open, close) " +
+                "VALUES (?, " +
+                "(SELECT day_id FROM day WHERE abbreviation = 'Sun'), " +
+                "'00:00:00', '00:00:00'); ";
+
+            int count = jdbcTemplate.update(sql, id, id, id, id, id, id, id);
+            return count == 7;
+
+    }
     /**
      * used by a brewer to add/update the information associated with their brewery (email, phone, address, etc)
      *
@@ -105,13 +149,13 @@ public class JdbcBreweryDao implements BreweryDao {
     public boolean updateBrewery(Brewery brewery) {
         String sql = "UPDATE brewery " +
                 "SET name = ?, email = ?, phone = ?, street_address = ?, " +
-                "city = ?, state = ?, zipcode = ?, history = ?, logo_img = ?, is_active = ?, has_food = ? " +
+                "city = ?, state = ?, zipcode = ?, history = ?, logo_img = ?, is_active = ?, has_food = ?, website_url = ? " +
                 "WHERE brewery_id = ?";
         int count = jdbcTemplate.update(sql, brewery.getName(), brewery.getEmail(),
                 brewery.getPhone(), brewery.getStreetAddress(),
                 brewery.getCity(), brewery.getState(), brewery.getZip(),
                 brewery.getHistory(), brewery.getLogo(), brewery.isActive(),
-                brewery.isHasFood(), brewery.getBreweryId());
+                brewery.isHasFood(), brewery.getWebsite(), brewery.getBreweryId());
         return count == 1;
     }
 
@@ -169,6 +213,7 @@ public class JdbcBreweryDao implements BreweryDao {
         brewery.setHasFood(rowSet.getBoolean("has_food"));
         brewery.setOwnerId(rowSet.getInt("owner_id"));
         brewery.setAvgPrice(rowSet.getDouble("avg_price"));
+        brewery.setWebsite(rowSet.getString("website_url"));
         brewery.setHours(getHours(brewery.getBreweryId()));
         brewery.setImages(getImages(brewery.getBreweryId()));
 
