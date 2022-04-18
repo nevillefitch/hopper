@@ -6,8 +6,9 @@
       alt="HopperLogo"
     />
     <div id="nav">
+      <!-- would like to make this one router link that references a method... if there is time -DMB -->
       <router-link class="home" v-bind:to="{name: 'home'}" v-if="($store.state.token == '' || $store.state.user.authorities[0].name == 'ROLE_USER')">Home</router-link>
-      <router-link class="home" v-bind:to="{name: 'brewerHome', params: { id: breweryId }}" v-if="( $store.state.token != '' &&  $store.state.user.authorities[0].name == 'ROLE_BREWER')"> Home </router-link>
+      <router-link class="home" v-bind:to="{name: 'brewerHome', params: { id: $store.state.activeBrewery.breweryId }}" v-if="( $store.state.token != '' &&  $store.state.user.authorities[0].name == 'ROLE_BREWER')"> Home </router-link>
       <router-link class="home" v-bind:to="{name: 'AdminHome'}" v-if="($store.state.token != '' && $store.state.user.authorities[0].name == 'ROLE_ADMIN')"> Home </router-link>
       &nbsp;|&nbsp; 
 
@@ -39,34 +40,22 @@
 
 <script>
 export default {
+  
   methods: {
-    getHomePath(){
-              
-              
-              if (this.$store.state.user.authorities[0].name == "ROLE_USER") {
-                alert('success')
-              return "{name: 'home'}" ;}
-            // } else if (
-            //   this.$store.state.user.authorities[0].name == "ROLE_BREWER"
-            // ) {
-            //   let breweryId = this.getBreweryIdByOwnerId();
-            //   this.$router.push({ name: "brewerHome", params: { id: breweryId } });
-            // } else if (
-            //   this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
-            // ) {
-            //   this.$router.push({ name: "AdminHome" });
-            // }
-    },
     getBreweryIdByOwnerId() {
       for (let i = 0; i < this.$store.state.breweries.length; ++i) {
         if (
           this.$store.state.breweries[i].ownerId == this.$store.state.user.id
         ) {
-          return (this.activeBreweryId =
-            this.$store.state.breweries[i].breweryId);
+          let id = (this.activeBreweryId = this.$store.state.breweries[i].breweryId);
+          this.$store.commit("SET_ACTIVE_BREWERY", id);
+          
         }
       }
     },
+  },
+  created(){
+    this.getBreweryIdByOwnerId();
   }
 }
 </script>
