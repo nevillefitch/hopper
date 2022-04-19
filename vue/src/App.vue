@@ -80,8 +80,10 @@
         }}
       </span>
     </div>
-
-    <router-view />
+    <body>
+       <router-view />
+    </body>
+   
     <footer>
       <div>Copyright © NLR Cohort 6 Hopper Capstone</div>
       <div>Isaac - Neville - Luigi - Logan - Devin</div>
@@ -111,10 +113,13 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 body {
   background-color: rgb(230, 255, 246);
   margin-left:0;
   margin-right:0;
+  font-family: 'Roboto', sans-serif;
 }
 header{
   display: flex;
