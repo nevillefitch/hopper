@@ -1,5 +1,5 @@
 <template>
-  <div class="beers">
+  <div class="beer__cards">
     <div
       v-for="beer in $store.state.activeBeers"
       v-bind:key="beer.beerId"
@@ -138,7 +138,7 @@ export default {
   background-color:  rgb(223, 217, 217);      
   transform: translateY(100%);
   transition: .2s ease-in-out;
-  
+  text-align: center;
 }
 
 .beer__card:hover .beer__card__overlay {
