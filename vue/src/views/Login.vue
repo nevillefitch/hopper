@@ -116,7 +116,7 @@ export default {
 <style>
 
 /*forms */
-#register-form, #login-form{
+#register-form, #login-form, #add-review-form{
   width: 30rem;
   height: 50rem;
   background-color: rgb(110, 160, 110);

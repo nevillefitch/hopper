@@ -1,12 +1,12 @@
 <template>
   <div>
-    <form v-on:submit.prevent>
+    <form id="add-review-form" v-on:submit.prevent>
       <div class="field">
-        <label for="rating">Rating: </label>
+        <label class="form-label" for="rating">Rating: </label>
         <input type="text" name="rating" id="rating" v-model="review.score" />
       </div>
       <div class="field">
-        <label for="message">Review: </label>
+        <label class="form-label" for="message">Review: </label>
         <input
           type="textarea"
           name="message"
