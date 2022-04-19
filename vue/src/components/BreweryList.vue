@@ -74,43 +74,15 @@ export default {
 
 <style scoped>
 
-.brewery-card {
-  border: 2px solid black;
-  border-radius: 10px;
-  background-color: rgb(110, 160, 110);
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  box-sizing: content-box;
-  padding: 10px;
-  margin: 6px;
-}
-.brewery-card:hover {
-  background-color: rgb(182, 216, 182);
-}
+
 .brewery-logo {
   height: 100px;
   display: flex;
   justify-content: center;
 }
-/* a {
-  text-decoration: none;
-} */
 .breweryLogo {
   width: 10em;
 }
-/* h2, p {
- 
-  text-align: center;
-   color: black;
-} */
-/* h2{
- font-size: 1.5em;
-} */
-
-
-
 
 * {
   box-sizing: border-box;
@@ -150,6 +122,8 @@ export default {
   display:flex;
   width: 100%;
   height: auto;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 5em;
   padding-top: 1em;
   padding-right: 2em;
