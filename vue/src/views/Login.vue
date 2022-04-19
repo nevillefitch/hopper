@@ -147,14 +147,10 @@ button{
   margin: 1em;
   
 }
-<<<<<<< HEAD
-
-=======
 .text-center{
   background-image: url("https://wallpaperaccess.com/full/5422418.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
->>>>>>> admin-add-brewery-page
 </style>
