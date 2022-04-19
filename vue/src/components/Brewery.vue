@@ -94,13 +94,13 @@ export default {
 </script>
 
 <style scoped>
-.brewery {
+/* .brewery {
   background-image: url("https://wallpaper.dog/large/20483358.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   
-} 
+}  */
 .breweryLogo {
   width: 15em;
 }
