@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+    <form @submit.prevent="login">
+      <h1>Please Login</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -10,9 +10,9 @@
         role="alert"
         v-if="this.$route.query.registration"
       >
-        Thank you for registering, please sign in.
+        Thank you for registering, please login.
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="form-label">Username:</label>
       <input
         type="text"
         id="username"
@@ -22,7 +22,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="form-label">Password:</label>
       <input
         type="password"
         id="password"
@@ -31,8 +31,12 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button type="submit">Login</button>
+
+      <label for="register" class="button-label">Need an account?</label>
+      <button id="register" name="register">
+        <router-link :to="{ name: 'register' }">Register</router-link>
+      </button>
     </form>
   </div>
 </template>
@@ -55,9 +59,9 @@ export default {
   },
   //TODO: refactor to activeBrewery
   //created() {
-    //let breweryId = this.getBreweryIdByOwnerId();
-    //  const breweryId = this.$route.params.id;
-    //this.$store.commit("SET_ACTIVE_BREWERY", breweryId);
+  //let breweryId = this.getBreweryIdByOwnerId();
+  //  const breweryId = this.$route.params.id;
+  //this.$store.commit("SET_ACTIVE_BREWERY", breweryId);
   //},
   methods: {
     login() {
@@ -73,7 +77,10 @@ export default {
               this.$store.state.user.authorities[0].name == "ROLE_BREWER"
             ) {
               let breweryId = this.getBreweryIdByOwnerId();
-              this.$router.push({ name: "brewerHome", params: { id: breweryId } });
+              this.$router.push({
+                name: "brewerHome",
+                params: { id: breweryId },
+              });
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
             ) {
@@ -106,3 +113,39 @@ export default {
   },
 };
 </script>
+<style>
+
+form {
+  width: 30rem;
+  height: 50rem;
+  background-color: rgb(110, 160, 110);
+  border-radius: 4%;
+  margin: 20px auto;
+  padding: 1em;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+label.form-label {
+  margin: 2em 0 0.4em 0;
+  text-align: left;
+}
+
+input.form-control {
+  background-color: greenyellow;
+}
+
+label.button-label {
+  text-align: center;
+  margin: 2em 0 0 0;
+  
+}
+button{
+  border-radius: 20%;
+  background-color: greenyellow;
+  margin: 1em;
+  
+}
+</style>

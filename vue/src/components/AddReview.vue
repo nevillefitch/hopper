@@ -56,7 +56,7 @@ export default {
 
 <style scoped>
 #message {
-  width: 25em;
-  height: 25em;
+  width: 15em;
+  height: 15em;
 }
 </style>
