@@ -152,7 +152,7 @@ header {
   border: 1pm solid black;
 }
 .hopperLogo {
-  width: 35%;
+  width: 20%;
   padding: 1em;
 }
 
