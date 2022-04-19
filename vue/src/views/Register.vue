@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register-form" class="text-center">
     <form @submit.prevent="register">
       <h1>Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -34,7 +34,7 @@
         required
       />
       <button type="submit">Create Account</button>
-      <label for="register" class="button-label"
+      <label id="already-have-account" for="register" class="button-label"
         >Already have an account?</label
       >
       <button>
