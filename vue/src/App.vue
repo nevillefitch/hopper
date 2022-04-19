@@ -11,6 +11,7 @@
     <div class="nav">
       <!-- would like to make this one router link that references a method... if there is time -DMB -->
       <div class="nav-header">
+
         <div class="nav-home">
           <router-link
             tag="a"
@@ -39,7 +40,7 @@
             class="home"
             v-bind:to="{
               name: 'brewerHome',
-              params: { id: $store.state.activeBrewery.breweryId },
+              params: { id: this.$store.state.brewerHomeBrewery },
             }"
             v-if="
               $store.state.token != '' &&
@@ -64,6 +65,7 @@
             >Breweries
           </router-link>
         </div>
+
       </div>
 
       <div class="nav-links">

@@ -76,11 +76,8 @@ export default {
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_BREWER"
             ) {
-              let breweryId = this.getBreweryIdByOwnerId();
-              this.$router.push({
-                name: "brewerHome",
-                params: { id: breweryId },
-              });
+              this.updateBrewerHomeBrewery();
+              this.$router.push({ name: "brewerHome", params: { id: this.$store.state.brewerHomeBrewery } });
             } else if (
               this.$store.state.user.authorities[0].name == "ROLE_ADMIN"
             ) {
@@ -110,6 +107,9 @@ export default {
         }
       }
     },
+    updateBrewerHomeBrewery() {
+      this.$store.commit("SET_BREWER_HOME_BREWERY", this.getBreweryIdByOwnerId());
+    }
   },
 };
 </script>

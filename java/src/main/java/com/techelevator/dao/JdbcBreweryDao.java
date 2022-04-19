@@ -95,7 +95,7 @@ public class JdbcBreweryDao implements BreweryDao {
         }
         return newBrewery;
     }
-    
+
 
     public boolean addHours(int id) {
 
