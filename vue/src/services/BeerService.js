@@ -13,5 +13,8 @@ export default {
     },
     getBeerTypes(){
         return axios.get(`/beers/types/`);
+    },
+    getBeerById(beerId){
+        return axios.get(`/beers/${beerId}`)
     }
 }

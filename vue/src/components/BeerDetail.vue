@@ -18,11 +18,15 @@
 </template>
 
 <script>
+import BeerService from "../services/BeerService.js"
 export default {
   name: "beer",
   methods: {
-    getBeer() {
-      this.$store.commit("SET_ACTIVE_BEER", this.$route.params.id);
+    getBeer() {     
+      BeerService.getBeerById(this.$route.params.id).then((response) => {
+          this.$store.commit("SET_UPDATED_ACTIVE_BEER", response.data);
+      })
+      
     }
   },
   created() {
