@@ -50,20 +50,22 @@
           $store.state.user.authorities[0].name == 'ROLE_BREWER'
         "
         >Breweries
+        &nbsp;|&nbsp;
       </router-link>
-      &nbsp;|&nbsp;
+      
 
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
-        >Logout</router-link
+        id="logout">Logout</router-link
       >
 
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"
+      <router-link id="login" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"
         >Login</router-link
       >&nbsp;|&nbsp;
 
       <router-link
+        id="register"
         v-bind:to="{ name: 'register' }"
         v-if="$store.state.token == ''"
         >Register</router-link
@@ -80,6 +82,10 @@
     </div>
 
     <router-view />
+    <footer>
+      <div>Copyright © NLR Cohort 6 Hopper Capstone</div>
+      <div>Isaac - Neville - Luigi - Logan - Devin</div>
+    </footer>
   </div>
 </template>
 
@@ -111,14 +117,30 @@ body {
   margin-right:0;
 }
 header{
+  display: flex;
   width: 100%;
   background-color: rgb(110, 160, 110);
+  justify-content: center;
 }
-nav{
+#nav{
   border: 1pm solid black;
+
+
+
 }
 .hopperLogo {
-  width: 25%;
+  width: 35%;
   padding: 1em;
 }
+
+footer {
+  display: flex;
+  flex-direction: column;
+  height: 5em;
+  background-color: rgb(110, 160, 110);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 </style>

@@ -100,11 +100,12 @@ export default {
   list-style-type: none;
 }
 
+/* .card__image:hover {
+  background-color: rgb(182, 216, 182);
+} */
 
 
 .card {
-  /* I don't think we need the border if background is green */
-  /* border: 2px solid black; */
   display: flex;
   position: relative;
   display: block;
@@ -157,6 +158,7 @@ export default {
 
 .card:hover .card__overlay {
   transform: translateY(0);
+  
 }
 
 .card__header {
