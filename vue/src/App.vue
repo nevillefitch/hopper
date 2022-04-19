@@ -11,7 +11,7 @@
     <div class="nav">
       <!-- would like to make this one router link that references a method... if there is time -DMB -->
       <div class="nav-header">
-           <div class="nav-title">
+           <div class="nav-home">
             <router-link tag="a"
               class="home"
               v-bind:to="{ name: 'home' }"
@@ -43,7 +43,7 @@
               "
             >
               Home
-              &nbsp;|&nbsp;
+             
             </router-link>
             
 
@@ -209,6 +209,22 @@ footer {
   color: #efefef;
 }
 
+.nav > .nav-header > .nav-home {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 13px 10px 13px 10px;
+  transition: all 0.3s ease-in;
+  overflow-y: hidden;
+  top: 50px;
+  left: 0px;
+}
+
+.nav > .nav-header > .nav-home:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
 .nav > .nav-links > .welcome {
   display: inline-block;
   padding: 13px 10px 13px 10px;
@@ -221,9 +237,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.nav > .nav-header > .nav-title a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
+
 
 .nav > #nav-check {
   display: none;
