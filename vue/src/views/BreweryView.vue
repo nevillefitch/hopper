@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="beer">
     <brewery />
     <beer-list />
   </div>
@@ -15,4 +15,10 @@ export default {
 </script>
 
 <style>
+.beer {
+  background-image: url("https://wallpaper.dog/large/20483358.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 </style>
