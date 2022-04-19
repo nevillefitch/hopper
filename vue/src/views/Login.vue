@@ -1,6 +1,6 @@
 <template>
-  <div id="login-form" class="text-center">
-    <form @submit.prevent="login">
+  <div id="login-div" class="text-center">
+    <form @submit.prevent="login" id="login-form">
       <h1>Please Login</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -31,10 +31,10 @@
         v-model="user.password"
         required
       />
-      <button id="login" type="submit">Login</button>
+      <button class="form-button" id="login" type="submit">Login</button>
 
       <label id="need-account" for="register" class="button-label">Need an account?</label>
-      <button id="register" name="register">
+      <button class="form-button" id="register" name="register">
         <router-link :to="{ name: 'register' }">Register</router-link>
       </button>
     </form>
@@ -116,15 +116,19 @@ export default {
 <style>
 
 /*forms */
-#register-form, #login-form, #add-review-form{
-  width: 30rem;
-  height: 50rem;
+
+#create-brewery-form, #register-form, #login-form, #add-review-form {
+  width: 200px;
+  height: 400px;
   background-color: rgb(110, 160, 110);
   border-radius: 4%;
   margin: 20px auto;
   padding: 1em;
+ 
 }
-
+#register-form h1, #login-form h1, #create-brewery-form h1{
+  font-size: 1.2em;
+}
 .form-label{
   display: block;
   font-weight: bold;
@@ -145,12 +149,18 @@ button{
   border-radius: 20%;
   background-color: #747272;
   margin: 1em;
+
+}
+.form-button{
+  display: block;
+  margin: 1em auto;
   
 }
-.text-center{
+#login-div{ 
   background-image: url("https://wallpaperaccess.com/full/5422418.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  padding: 20px;
 }
 </style>

@@ -1,36 +1,37 @@
 <template>
-<div class="box">
-  <form v-on:submit.prevent>
-    <div class="field">
-      <label for="name">Brewery Name: </label>
-      <input type="text" name="name" v-model="brewery.name" />
-    </div>
-    <div class="field">
-      <label for="ownerId">Brewery Username: </label>
-      <select name="ownerId" v-model="brewery.ownerId">
-
-        <option value="0"></option>
-        <option
-          v-for="user in this.users.data"
-          v-bind:key="user.id"
-          :value="user.id"
+  <div id="create-brewery-div">
+    <form id="create-brewery-form" v-on:submit.prevent>
+      <h1>Add Brewery</h1>
+      <div class="field">
+        <label class="form-label" for="name">Brewery Name: </label>
+        <input type="text" name="name" placeholder="Brewery Name" v-model="brewery.name" />
+      </div>
+      <div class="field">
+        <label class="form-label" for="ownerId">Brewer Username: </label>
+        <select name="ownerId" v-model="brewery.ownerId">
+          <option value="0"></option>
+          <option
+            v-for="user in this.users.data"
+            v-bind:key="user.id"
+            :value="user.id"
+          >
+            {{ user.username }}
+          </option>
+        </select>
+      </div>
+      <div class="actions">
+        <button
+          class="form-button"
+          type="submit"
+          v-on:click="
+            upgradeUser();
+            addBrewery();
+          "
         >
-          {{ user.username }}
-        </option>
-      </select>
-    </div>
-    <div class="actions">
-      <button
-        type="submit"
-        v-on:click="
-          upgradeUser();
-          addBrewery();
-        "
-      >
-        Add Brewery
-      </button>
-    </div>
-  </form>
+          Add Brewery
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -52,12 +53,13 @@ export default {
   created() {
     AuthService.getUsers().then((response) => {
       this.users = response;
-   
     });
   },
   computed: {
     beerLoverFilter() {
-      return this.users.data.filter(user => user.authorities[0].name === 'ROLE_ADMIN');
+      return this.users.data.filter(
+        (user) => user.authorities[0].name === "ROLE_ADMIN"
+      );
     },
   },
   methods: {
@@ -104,7 +106,10 @@ export default {
 </script>
 
 <style>
-.box {
-  height: 20%;
+#create-brewery-div {
+  background-image: url("https://breweriesinpa.com/wp-content/uploads/2019/01/1-5.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 </style>
