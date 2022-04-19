@@ -42,12 +42,14 @@
         }}
       </p>
       <!-- Whoever is doing CSS: may want to set width in css  -->
-      <img
+      <div class="money">
+      <img 
         src="@/resources/dollarSign.png"
         alt="$"
         v-for="d in getIntegerAvgPrice()"
         v-bind:key="d"
       />
+      </div>
     </div>
   </div>
 </template>
@@ -103,7 +105,9 @@ export default {
   width: 15em;
 }
 img {
-  width: 1em;
+  width: 2em;
+  background-color: white;
+  border-radius: 1em;
 }
 
 td {
@@ -132,6 +136,7 @@ td {
   border-radius: 15px;
   padding: 5px; */
   color: white;
+  margin-top:-30px;
 }
 a {
   color: white;
@@ -139,7 +144,11 @@ a {
 a:hover{
   color: grey;
 }
+p {
+  text-align: center;
+}
 .h-a-d {
+  color: white;
   grid-area: hours;
   justify-self: right;
   margin-right: 50px;
@@ -148,24 +157,22 @@ a:hover{
   align-items: center;
   display: flex;
   border-radius: 15px;
-  border: rgb(18, 82, 47) solid 3px;
-  background-color: white;
+  border: rgb(6, 66, 33) solid 3px;
+  box-shadow: 10px 10px rgba(22, 168, 29, 0.15);
   padding: 5px;
 }
+
 .about-us {
   color: white;
-  border: rgb(18, 82, 47) solid 3px;
+  border: rgb(6, 66, 33) solid 3px;
   /* background-color: white; */
   border-radius: 15px;
   grid-area: about;
-  box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 10px 10px rgba(22, 168, 29, 0.15);
+  
   padding: 5px;
 }
-.about-us:hover {
-  border-radius: 0% 0% 50% 50% / 0% 0% 5% 5%;
-  box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-}
+
 .title {
   text-align: center;
   color: white;
