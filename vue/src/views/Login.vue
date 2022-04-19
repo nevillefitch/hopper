@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login-form" class="text-center">
     <form @submit.prevent="login">
       <h1>Please Login</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
@@ -31,9 +31,9 @@
         v-model="user.password"
         required
       />
-      <button type="submit">Login</button>
+      <button id="login" type="submit">Login</button>
 
-      <label for="register" class="button-label">Need an account?</label>
+      <label id="need-account" for="register" class="button-label">Need an account?</label>
       <button id="register" name="register">
         <router-link :to="{ name: 'register' }">Register</router-link>
       </button>
@@ -115,7 +115,8 @@ export default {
 </script>
 <style>
 
-form {
+/*forms */
+#register-form, #login-form{
   width: 30rem;
   height: 50rem;
   background-color: rgb(110, 160, 110);
@@ -124,28 +125,27 @@ form {
   padding: 1em;
 }
 
-label {
+.form-label{
   display: block;
   font-weight: bold;
-}
-label.form-label {
-  margin: 2em 0 0.4em 0;
+   margin: 2em 0 0.4em 0;
   text-align: left;
 }
 
 input.form-control {
-  background-color: greenyellow;
+  background-color: #c2c0c0;
 }
 
-label.button-label {
+label#need-account, label#already-have-account{
+  display:block;
   text-align: center;
   margin: 2em 0 0 0;
-  
 }
 button{
   border-radius: 20%;
-  background-color: greenyellow;
+  background-color: #747272;
   margin: 1em;
   
 }
+
 </style>
