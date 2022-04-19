@@ -1,4 +1,5 @@
 <template>
+<div class="box">
   <form v-on:submit.prevent>
     <div class="field">
       <label for="name">Brewery Name: </label>
@@ -30,6 +31,7 @@
       </button>
     </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -102,4 +104,7 @@ export default {
 </script>
 
 <style>
+.box {
+  height: 20%;
+}
 </style>
