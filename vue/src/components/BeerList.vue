@@ -20,9 +20,7 @@
           <h2 class="beer__card__title">{{ beer.name }}</h2>
           <p class="beer__card__sub__title">{{ beer.beerType }}</p>
         </div>
-        <p class="beer__card__description">Score: {{ beer.avgScore }}</p>
-        <p class="beer__card__description">ABV: {{ beer.abv }}</p>
-        <p class="beer__card__description">Price: ${{ beer.price }}</p>
+        <p class="beer__card__description">Score: {{ parseFloat(beer.avgScore).toFixed(2) }} &nbsp;|&nbsp;  ABV: {{ beer.abv }}  &nbsp;|&nbsp;  Price: ${{ beer.price }}</p>
       </div>
       </router-link>
 
