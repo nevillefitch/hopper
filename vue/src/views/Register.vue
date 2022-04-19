@@ -1,7 +1,7 @@
 <template>
-  <div id="register-form" class="text-center">
-    <form @submit.prevent="register">
-      <h1>Create Account</h1>
+  <div id="register-div" class="text-center">
+    <form id="register-form" @submit.prevent="register">
+      <h1 >Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -33,11 +33,11 @@
         v-model="user.confirmPassword"
         required
       />
-      <button type="submit">Create Account</button>
+      <button class="form-button" type="submit">Create Account</button>
       <label id="already-have-account" for="register" class="button-label"
         >Already have an account?</label
       >
-      <button>
+      <button class="form-button">
         <router-link :to="{ name: 'login' }">Login</router-link>
       </button>
     </form>
@@ -95,4 +95,11 @@ export default {
 </script>
 
 <style>
+#register-div{ 
+  background-image: url("https://images7.alphacoders.com/288/thumb-1920-288712.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 20px;
+}
 </style>
