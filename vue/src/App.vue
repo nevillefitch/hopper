@@ -25,7 +25,7 @@
               class="home"
               v-bind:to="{
                 name: 'brewerHome',
-                params: { id: $store.state.activeBrewery.breweryId },
+                params: { id: this.$store.state.brewerHomeBrewery },
               }"
               v-if="
                 $store.state.token != '' &&

@@ -23,6 +23,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    brewerHomeBrewery: '',
     breweries: [],
     activeBrewery: '',
     activeBeers: [],
@@ -60,6 +61,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_REVIEWS(state, reviews){
       state.activeReviews = reviews;
+    },
+    SET_BREWER_HOME_BREWERY(state, id){
+      state.brewerHomeBrewery = id;
     },
     CHANGE_ACTIVE_BEER_STATUS(state){
       state.activeBeer.active = !state.activeBeer.active;
