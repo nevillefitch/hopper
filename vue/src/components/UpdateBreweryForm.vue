@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent>
+  <form class="update-form" v-on:submit.prevent>
       <img
         class="breweryLogo"
         :src="$store.state.activeBrewery.logo"
@@ -130,6 +130,12 @@ export default {
 </script>
 
 <style>
+form.update-form{
+  width: 90%;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+}
 .breweryLogo {
 width: 15em;
 }
