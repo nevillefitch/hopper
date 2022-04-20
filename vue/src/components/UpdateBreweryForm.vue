@@ -102,7 +102,7 @@
           }}
         </button>
       </div>
-      <div class="fields">
+      <div class="fields" id="update-hours-section">
         <tr>
           <th>Day</th>
           <th>Open</th>
@@ -193,8 +193,11 @@ export default {
     "title logo-name misc"
     "about-us contact-info misc"
     ". . button-area";
-  margin: 2em 0 2em 2em;
-
+  margin: 2em auto;
+  padding: 2em;
+  border-radius: 10%;
+  background-color: burlywood;
+  width: 80vw;
   /* grid-template-columns: repeat(3, 1fr);*/
 }
 
@@ -221,8 +224,18 @@ export default {
   width: 15em;
 } 
 #history {
-height: 100px;
-width: 100px;
+height: 315px;
+width: 310px;
+}
+.update-form label {
+  display: block;
+  
+}
+.update-form input {
+  margin: 0 0 .8em 0;
+}
+#update-hours-section{
+  margin: 2em 0 0 0;
 }
 
 </style>
