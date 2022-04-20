@@ -8,6 +8,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.io.Console;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,31 +172,86 @@ public class JdbcBreweryDao implements BreweryDao {
                 brewery.getHistory(), brewery.getLogo(), brewery.isActive(),
                 brewery.isHasFood(), brewery.getWebsite(), brewery.getBreweryId());
 
-        if(breweryCount == 1) {
+        boolean updatedSocials = updateSocials(brewery);
+        boolean updatedHours = updateHours(brewery);
+
+        if(breweryCount == 1 && updatedSocials && updatedHours) {
             success = true;
         }
         return success;
     }
 
 
-    //todo update socials
     public boolean updateSocials(Brewery brewery) {
         boolean success = false;
+        int updateCount = 0;
+
+        List<Socials> socials = brewery.getSocials();
+        int socialsSize = socials.size();
+
+
         String sql = "UPDATE social SET url = ? WHERE brewery_id = ? AND social_id = ?;";
 
-        int updateExpectedCount = brewery.getSocials().size();
+        if (socialsSize > 0) {
+            for (Socials social : socials) {
+                int count = 0;
+                String url = social.getUrl();
+                int breweryId = social.getBreweryId();
+                int socialId = social.getSocialId();
+                try {
+                    count = jdbcTemplate.update(sql, url, breweryId, socialId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                updateCount = updateCount + count;
+            }
+        } else {
+            return true;
+        }
 
-        int updateCount = jdbcTemplate.update(sql, );
-
-        if(updateExpectedCount == updateCount) {
+        if (socialsSize == updateCount) {
             success = true;
         }
+
         return success;
     }
 
-    //todo update hours
+
     public boolean updateHours(Brewery brewery) {
-        return false;
+        int breweryId    = brewery.getBreweryId();
+        boolean success = false;
+        int updateCount = 0;
+
+        List<Hours> hours = brewery.getHours();
+        int hoursSize = hours.size();
+
+
+        String sql = "UPDATE hours SET open = ?, close = ? WHERE brewery_id = ? AND day_id = ?;";
+
+        if (hoursSize > 0) {
+            for (Hours day : hours) {
+                int count = 0;
+                LocalTime open  = day.getOpen();
+                LocalTime close = day.getClose();
+                int dayId = day.getDayId();
+                try {
+                    count = jdbcTemplate.update(sql, open, close, breweryId, day.getDayId());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+
+                updateCount = updateCount + count;
+            }
+        } else {
+            return true;
+        }
+
+        if (hoursSize == updateCount) {
+            success = true;
+        }
+
+        return success;
     }
 
 
@@ -219,11 +276,11 @@ public class JdbcBreweryDao implements BreweryDao {
 
     public List<Hours> getHours(int breweryId) {
         List<Hours> hours = new ArrayList<>();
-        String sql = "SELECT name, abbreviation, open, close " +
+        String sql = "SELECT name, hours.day_id,abbreviation, open, close " +
                 "FROM hours " +
                 "LEFT JOIN day " +
                 "ON day.day_id = hours.day_id " +
-                "WHERE brewery_id = ? ;";
+                "WHERE brewery_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryId);
         while (results.next()) {
                     Hours h = mapRowToHours(results);
@@ -248,9 +305,9 @@ public class JdbcBreweryDao implements BreweryDao {
     private Socials mapRowToSocials(SqlRowSet rowSet) {
         Socials socials = new Socials();
         socials.setBreweryId(rowSet.getInt("brewery_id"));
-        socials.setBreweryId(rowSet.getInt("social_id"));
-        socials.setBreweryId(rowSet.getInt("social_name"));
-        socials.setBreweryId(rowSet.getInt("url"));
+        socials.setSocialId(rowSet.getInt("social_id"));
+        socials.setSocialName(rowSet.getString("social_name"));
+        socials.setUrl(rowSet.getString("url"));
         return socials;
     }
 
@@ -258,9 +315,10 @@ public class JdbcBreweryDao implements BreweryDao {
     private Hours mapRowToHours(SqlRowSet rowSet) {
         Hours hours = new Hours();
         hours.setDayName(rowSet.getString("name"));
+        hours.setDayId(rowSet.getInt("day_id"));
         hours.setDayAbbreviation(rowSet.getString("abbreviation"));
-        hours.setOpen(rowSet.getString("open"));
-        hours.setClose(rowSet.getString("close"));
+        hours.setOpen(rowSet.getObject("open",LocalTime.class));
+        hours.setClose(rowSet.getObject("close",LocalTime.class));
         return hours;
     }
 

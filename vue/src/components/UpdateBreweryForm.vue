@@ -223,7 +223,9 @@ form.update-form:nth-child(15) {
 .breweryLogo {
   width: 15em;
 }
+
 img {
   width: 1em;
 }
+
 </style>

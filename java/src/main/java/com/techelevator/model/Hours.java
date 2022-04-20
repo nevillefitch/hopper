@@ -1,11 +1,23 @@
 package com.techelevator.model;
 
+import java.time.LocalTime;
+
 public class Hours {
 
     private String dayName;
+    private int dayId;
     private String dayAbbreviation;
-    private String open;
-    private String close;
+    private LocalTime open;
+    private LocalTime close;
+
+
+    public int getDayId() {
+        return dayId;
+    }
+
+    public void setDayId(int dayId) {
+        this.dayId = dayId;
+    }
 
     public String getDayName() {
         return dayName;
@@ -23,19 +35,19 @@ public class Hours {
         this.dayAbbreviation = dayAbbreviation;
     }
 
-    public String getOpen() {
+    public LocalTime getOpen() {
         return open;
     }
 
-    public void setOpen(String open) {
+    public void setOpen(LocalTime open) {
         this.open = open;
     }
 
-    public String getClose() {
+    public LocalTime getClose() {
         return close;
     }
 
-    public void setClose(String close) {
+    public void setClose(LocalTime close) {
         this.close = close;
     }
 }

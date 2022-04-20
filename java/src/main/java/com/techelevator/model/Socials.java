@@ -3,7 +3,7 @@ package com.techelevator.model;
 public class Socials {
     private int breweryId;
     private int socialId;
-    private int socialName;
+    private String socialName;
     private String url;
 
     public int getBreweryId() {
@@ -22,11 +22,11 @@ public class Socials {
         this.socialId = socialId;
     }
 
-    public int getSocialName() {
+    public String getSocialName() {
         return socialName;
     }
 
-    public void setSocialName(int socialName) {
+    public void setSocialName(String socialName) {
         this.socialName = socialName;
     }
 

@@ -43,7 +43,7 @@
       </p>
       <!-- Whoever is doing CSS: may want to set width in css  -->
       <div class="money">
-      <img 
+      <img id="dollarImg"
         src="@/resources/dollarSign.png"
         alt="$"
         v-for="d in getIntegerAvgPrice()"
@@ -179,6 +179,7 @@ p {
   grid-area: title;
   font-size: 40px;
 }
+
 
 
 </style>

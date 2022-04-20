@@ -409,4 +409,62 @@ INSERT INTO beer_review (beer_id, review_message, score, user_id) VALUES ((selec
 
 
 
+CREATE TABLE social_name (
+
+	id serial,
+	social_id int,
+	social_name varchar(200),
+
+	CONSTRAINT PK_social_name PRIMARY KEY (social_id)
+
+
+	);
+
+CREATE TABLE social (
+
+	id serial,
+	brewery_id int,
+	social_id int,
+	url varchar(2000),
+
+	CONSTRAINT PK_social PRIMARY KEY (id),
+	CONSTRAINT FK_brewery FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id),
+	CONSTRAINT FK_social_name FOREIGN KEY (social_id) REFERENCES social_name(social_id)
+
+	);
+
+INSERT INTO social_name (social_id, social_name) VALUES (1,'Facebook');
+INSERT INTO social_name (social_id, social_name) VALUES (2,'Instagram');
+INSERT INTO social_name (social_id, social_name) VALUES (3,'Twitter');
+INSERT INTO social_name (social_id, social_name) VALUES (4,'LinkedIn');
+
+
+
+
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Cigar City Brewery'),1,'https://www.facebook.com/cigarcitybeer');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Cigar City Brewery'),2,'https://www.instagram.com/cigarcitybrewing/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Cigar City Brewery'),3,'https://twitter.com/CigarCityBeer');
+
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),1,'https://www.facebook.com/UnityVibration/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),2,'https://www.instagram.com/unityvibrationkombucha/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Triple G-ddess Tap Room'),3,'');
+
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Flying Dog Brewery'),1,'https://www.facebook.com/flyingdog');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Flying Dog Brewery'),2,'https://www.instagram.com/flyingdogbrewery/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Flying Dog Brewery'),3,'https://twitter.com/flyingdog');
+
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'New Holland Brewing'),1,'https://www.facebook.com/newhollandbrew/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'New Holland Brewing'),2,'https://www.instagram.com/newhollandbrew/');
+INSERT INTO social (brewery_id, social_id, url) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'New Holland Brewing'),3,'https://www.twitter.com/newhollandbrew/');
+
+INSERT INTO social (brewery_id, social_id, url) VALUES (5,1,'');
+INSERT INTO social (brewery_id, social_id, url) VALUES (5,2,'');
+INSERT INTO social (brewery_id, social_id, url) VALUES (5,3,'');
+
+INSERT INTO social (brewery_id, social_id, url) VALUES (6,1,'');
+INSERT INTO social (brewery_id, social_id, url) VALUES (6,2,'');
+INSERT INTO social (brewery_id, social_id, url) VALUES (6,3,'');
+
+
+
 COMMIT TRANSACTION;
