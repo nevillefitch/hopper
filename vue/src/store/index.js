@@ -53,6 +53,9 @@ export default new Vuex.Store({
     SET_ACTIVE_BREWERY(state, breweryId) {
       state.activeBrewery = state.breweries.find(brewery => brewery.breweryId == breweryId)
     },
+    SET_UPDATED_ACTIVE_BEER(state, beer) {
+      state.activeBeer = beer;
+    },
     SET_ACTIVE_BEERS(state, beers){
       state.activeBeers = beers;
     },
