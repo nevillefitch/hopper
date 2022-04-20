@@ -1,4 +1,5 @@
 <template>
+<div class="brewery-form">
   <div class="cards">
     <div v-for="brewery in activeBreweries" v-bind:key="brewery.breweryId" class="cards">
       <router-link class="card" tag="a" v-bind:to="{ name: 'brewery', params: { id: brewery.breweryId } }" >
@@ -23,6 +24,7 @@
 
       </router-link>
     </div>
+  </div>
   </div>
 </template>
 
@@ -236,7 +238,12 @@ export default {
   color: #797476;
 
 }
-
+.brewery-form {
+  background-image: url("https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41587-021-01202-0/MediaObjects/41587_2021_1202_Figa_HTML.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 
 
