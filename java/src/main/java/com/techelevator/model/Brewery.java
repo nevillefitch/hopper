@@ -20,22 +20,9 @@ public class Brewery {
     private double avgPrice;
     private List<Hours> hours;
     private List<String> images;
+    private List<Socials> socials;
 
-    public String getWebsite() {
-        return website;
-    }
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
 
     public Brewery() {
     }
@@ -164,6 +151,30 @@ public class Brewery {
 
     public void setHours(List<Hours> hours) {
         this.hours = hours;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public List<Socials> getSocials() {
+        return socials;
+    }
+
+    public void setSocials(List<Socials> socials) {
+        this.socials = socials;
     }
 
     @Override
