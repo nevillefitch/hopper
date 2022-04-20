@@ -98,7 +98,7 @@ export default {
   border-radius: calc(40 * 1px);
   overflow: hidden;
   text-decoration: none;
-  background-color: rgb(110, 160, 110);
+  background-color: rgba(192, 189, 101, 0.7);
   justify-content: center;
   
   
