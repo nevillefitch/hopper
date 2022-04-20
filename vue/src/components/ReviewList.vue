@@ -38,8 +38,29 @@ export default {
   methods: {
     getReviews() {
       ReviewService.getReviewList(this.$route.params.id).then((response) => {
-        this.$store.commit("SET_ACTIVE_REVIEWS", response.data);
-      });
+        if (response.status === 200) {
+          this.$store.commit("SET_ACTIVE_REVIEWS", response.data);
+        }
+      })
+      .catch((error) => {
+          this.handleErrorResponse(error, "retrieving")
+        })
+    },
+    handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " +
+          verb +
+          " reviews. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg =
+          "Error " + verb + " reviews. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " reviews. Request could not be created.";
+      }
     },
     formattedMessage(id) {
       let review = this.$store.state.activeReviews.find(

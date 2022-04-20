@@ -44,7 +44,26 @@ export default {
         if (response.status === 201) {
           this.$router.push({ name: "beerDetail" });
         }
-      });
+      })
+            .catch((error) => {
+          this.handleErrorResponse(error, "creating");
+        });
+    },
+        handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " +
+          verb +
+          " review. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg =
+          "Error " + verb + " review. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " review. Request could not be created.";
+      }
     },
   },
   created() {

@@ -26,8 +26,26 @@ export default {
       BeerService.getBeerById(this.$route.params.id).then((response) => {
           this.$store.commit("SET_UPDATED_ACTIVE_BEER", response.data);
       })
-      
-    }
+      .catch((error) => {
+          this.handleErrorResponse(error, "retrieving");
+        });
+    },
+        handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " +
+          verb +
+          " beer. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg =
+          "Error " + verb + " beer. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " beer. Request could not be created.";
+      }
+    },
   },
   created() {
     this.getBeer();
