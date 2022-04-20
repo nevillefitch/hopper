@@ -128,7 +128,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 body {
-  background-color: rgba(94, 58, 5);;
+  background-color: rgb(22, 21, 18);;
   margin-left: 0;
   margin-right: 0;
   font-family: "Roboto", sans-serif;
@@ -138,7 +138,7 @@ header {
   display: flex;
   width: 100%;
   margin: -1em 0em;
-  background-color: rgb(94, 58, 5);
+  background-color: rgb(47, 100, 124);
   justify-content: center;
 }
 #nav {
@@ -154,7 +154,7 @@ footer {
   align-content: center;
   flex-direction: row;
   height: 5em;
-  background-color: rgb(94, 58, 5);
+  background-color: rgb(47, 100, 124);
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -163,7 +163,7 @@ footer {
 .nav {
   height: 4.5vh;
   width: 100%;
-  background-color: #4D4D4D;
+  background-color: #252121;
   position: relative;
   margin-top: -5px;
 }
@@ -206,7 +206,7 @@ footer {
   overflow-y: hidden;
   top: 50px;
   left: 0px;
-  margin-left: 50px;
+
 }
 .nav > .nav-header > .nav-home:hover {
   background-color: rgba(0, 0, 0, 0.3);
