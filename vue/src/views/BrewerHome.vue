@@ -68,7 +68,7 @@ a {
   text-decoration: none;
 }
 .beer {
-  background-image: url("https://wallpaper.dog/large/20483358.jpg");
+  background-image: url("https://wallpaper.dog/large.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

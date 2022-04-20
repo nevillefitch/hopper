@@ -16,7 +16,7 @@ export default {
 
 <style>
 .beer {
-  background-image: url("https://wallpaper.dog/large/20483358.jpg");
+  background-image: url(../../src/resources/41587_2021_1202_Figa_HTMLgrey.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

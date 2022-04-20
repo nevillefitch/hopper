@@ -99,9 +99,12 @@ export default {
   gap: 2em;
   /* justify deleted will space left first */
   justify-content: space-evenly;
-  margin: 4rem 2vw;
+  align-content: center;
   padding: 0;
   list-style-type: none;
+  flex-basis: 25%;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
 
 /* .card__image:hover {
@@ -118,9 +121,8 @@ export default {
   border-radius: calc(40 * 1px);
   overflow: hidden;
   text-decoration: none;
-  background-color: rgb(110, 160, 110);
+  background-color: rgba(53, 113, 141, 0.7);
   justify-content: center;
-  
 }
 
 .card__image {      
@@ -242,10 +244,19 @@ export default {
 
 }
 .brewery-form {
-  background-image: url("https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41587-021-01202-0/MediaObjects/41587_2021_1202_Figa_HTML.jpg");
+  background-image:url(../../src/resources/41587_2021_1202_Figa_HTMLgrey.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size:cover;
+  justify-content: space-evenly;
+  display: inline-block;
+}
+
+.brewery-form img {
+}
+
+.brewery-form ::backdrop{
+  filter: grayscale()
 }
 
 
