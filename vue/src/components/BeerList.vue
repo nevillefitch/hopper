@@ -1,7 +1,7 @@
 <template>
   <div class="beer__cards">
     <div
-      v-for="beer in $store.state.activeBeers"
+      v-for="beer in activeBeerList"
       v-bind:key="beer.beerId"
       class="beer__cards"
     >
@@ -86,6 +86,9 @@ export default {
         this.$store.state.activeBrewery.ownerId == this.$store.state.user.id
       );
     },
+    activeBeerList() {
+       return this.$store.state.activeBeers.filter((beer) => beer.active);
+    }
   },
 };
 </script>
