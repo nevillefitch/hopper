@@ -11,7 +11,7 @@
           <div class="card__header">
             <!-- <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>   -->
             <h2 class="card__title">{{ brewery.name }}</h2>
-            <p class="price__container"><img class="card__price"  src="@/resources/dollarSign.png" alt="$" v-for="d in getIntegerAvgPrice(brewery.breweryId)" v-bind:key="d"/></p>
+            <p class="price__container"><img id="card__price"  src="@/resources/dollarSign.png" alt="$" v-for="d in getIntegerAvgPrice(brewery.breweryId)" v-bind:key="d"/></p>
             <p class="card__city__state">{{ brewery.city }}, {{ brewery.state }}</p>
           </div>
           <!-- Inside of Card Detail -->
@@ -137,9 +137,10 @@ export default {
 
 }
 
-.card__price {
+#card__price {
   display: flex;
   flex-direction: column;
+  width: 1em;
 }
 
 
