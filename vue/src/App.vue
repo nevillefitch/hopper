@@ -168,7 +168,7 @@ footer {
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: -1em 0em 2em 0em;
+  margin: -1em 0em;
 }
 
 .nav {
