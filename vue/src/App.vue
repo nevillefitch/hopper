@@ -139,7 +139,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 body {
-  background-color: rgb(230, 255, 246);
+  /* background-color: black; */
   margin-left: 0;
   margin-right: 0;
   font-family: "Roboto", sans-serif;
@@ -147,6 +147,8 @@ body {
 header {
   display: flex;
   width: 100%;
+  margin: -1em 0em;
+
   background-color: rgb(110, 160, 110);
   justify-content: center;
 }
@@ -154,25 +156,27 @@ header {
   border: 1pm solid black;
 }
 .hopperLogo {
-  width: 20%;
+  width: 17%;
   padding: 1em;
 }
 
 footer {
   display: flex;
   flex-direction: column;
-  height: 5em;
+  height: 4em;
   background-color: rgb(110, 160, 110);
   justify-content: center;
   align-content: center;
   align-items: center;
+  margin: -1em 0em 2em 0em;
 }
 
 .nav {
-  height: 50px;
+  height: 5vh;
   width: 100%;
   background-color: #4d4d4d;
   position: relative;
+  
 }
 
 .nav > .nav-header {
@@ -186,7 +190,7 @@ footer {
 
 .nav > .nav-header > .nav-title {
   display: inline-block;
-  font-size: 22px;
+  
   color: #fff;
   padding: 10px 10px 10px 10px;
 }
@@ -198,7 +202,7 @@ footer {
 .nav > .nav-links {
   display: inline;
   float: right;
-  font-size: 18px;
+  
 }
 
 .nav > .nav-links > a {
@@ -217,7 +221,7 @@ footer {
 
 .nav > .nav-header > .nav-home {
   display: inline-block;
-  font-size: 22px;
+ 
   color: #fff;
   padding: 13px 10px 13px 10px;
   transition: all 0.3s ease-in;
@@ -234,7 +238,7 @@ footer {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  font-size: 0.85em;
+  
   color: #efefef;
 }
 

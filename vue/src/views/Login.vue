@@ -117,7 +117,7 @@ export default {
 
 /*forms */
 
-#create-brewery-form, #register-form, #login-form, #add-review-form {
+#add-beer-form, #create-brewery-form, #register-form, #login-form, #add-review-form {
   width: 200px;
   height: 400px;
   background-color: rgb(110, 160, 110);
@@ -126,7 +126,7 @@ export default {
   padding: 1em;
  
 }
-#register-form h1, #login-form h1, #create-brewery-form h1{
+#add-beer-div h1,#register-form h1, #login-form h1, #create-brewery-form h1{
   font-size: 1.2em;
 }
 .form-label{
@@ -162,5 +162,17 @@ button{
   background-attachment: fixed;
   background-size: cover;
   padding: 20px;
+}
+
+#add-beer-form {
+  width: 200px;
+  height: 550px;
+}
+#add-beer-div {
+  background-image: url("https://ogden_images.s3.amazonaws.com/www.grit.com/images/2020/09/05140851/AdobeStock_92673762.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 40px;
 }
 </style>

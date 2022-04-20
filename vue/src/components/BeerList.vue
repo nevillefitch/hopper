@@ -100,9 +100,10 @@ export default {
   gap: 2em;
   /* justify deleted will space left first */
   justify-content: space-evenly;
-  margin: 4rem 2vw;
+  margin: 1rem 2vw;
   padding: 0;
   list-style-type: none;
+  
 }
 
 /* .card__image:hover {
