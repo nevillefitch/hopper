@@ -68,7 +68,6 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.$router.push({ name: "AdminHome" });
-            alert("Brewery Created");
           }
         })
         .catch((error) => {
@@ -80,10 +79,12 @@ export default {
         (response) => {
           //TODO: is this alert necessary? do we need a catch instead?
           if (response.status === 200) {
-            alert("updateduserId");
+            "success";
           }
-        }
-      );
+        })
+        .catch((error) => {
+          this.handleErrorResponse(error, "finding user to upgrade to owner of")
+        })
     },
     handleErrorResponse(error, verb) {
       if (error.response) {

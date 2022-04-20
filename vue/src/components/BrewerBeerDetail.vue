@@ -29,9 +29,10 @@ export default {
         BeerService.updateBeer(this.$store.state.activeBeer)
         .then((response) => {
           if (response.status === 200) {
-            alert("success");
+            this.getBeer();
+          } else {
+            this.$store.commit("CHANGE_ACTIVE_BEER_STATUS");
           }
-          this.getBeer();
         })
         .catch((error) => {
           this.handleErrorResponse(error, "updating");
@@ -57,7 +58,7 @@ export default {
   
   created() {
     this.getBeer();
-    this.beer = this.$store.state.activeBeer;
+    // this.beer = this.$store.state.activeBeer;
   }
 };
 

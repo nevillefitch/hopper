@@ -52,8 +52,29 @@ export default {
   methods: {
     getBeers() {
       BeerService.getBeers(this.$route.params.id).then((response) => {
-        this.$store.commit("SET_ACTIVE_BEERS", response.data);
-      });
+        if (response.status === 200) {
+            this.$store.commit("SET_ACTIVE_BEERS", response.data);
+        }
+      })
+      .catch((error) => {
+          this.handleErrorResponse(error, "retrieving")
+        })
+    },
+    handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " +
+          verb +
+          " beers. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg =
+          "Error " + verb + " beers. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " beers. Request could not be created.";
+      }
     },
   },
   created() {
