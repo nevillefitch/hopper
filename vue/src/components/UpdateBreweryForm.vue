@@ -225,8 +225,5 @@ export default {
 height: 100px;
 width: 100px;
 }
-img {
-  width: 1em;
-}
 
 </style>

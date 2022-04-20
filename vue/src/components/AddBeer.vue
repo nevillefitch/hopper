@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <form v-on:submit.prevent>
+  <div id="add-beer-div">
+    <form id="add-beer-form" v-on:submit.prevent>
+      <h1>Add Beer</h1>
       <div class="field">
         <label for="name">Name: </label>
         <input type="text" name="name" id="name" v-model="beer.name" />
       </div>
       <div class="field">
-        <label for="imagePath">Image URL: </label>
+        <label class="form-label" for="imagePath">Image URL: </label>
         <input
           type="text"
           name="imagePath"
@@ -15,7 +16,7 @@
         />
       </div>
       <div class="field">
-        <label for="description">Beer Description: </label>
+        <label class="form-label" for="description">Beer Description: </label>
         <input
           type="text"
           name="description"
@@ -24,14 +25,16 @@
         />
       </div>
       <div class="field">
-        <label for="price">Beer Price: </label>
+        <label class="form-label" for="price">Beer Price: </label>
         <input type="text" name="price" id="price" v-model="beer.price" />
       </div>
       <div class="field">
-        <label for="abv">ABV: </label>
+        <label class="form-label" for="abv">ABV: </label>
         <input type="text" name="abv" id="imagePath" v-model="beer.abv" />
       </div>
+      <label class="form-label" for="beerTypeId">Beer Style: </label>
       <select name="beerTypeId" v-model="beer.beerTypeId">
+        
         <option value="0"></option>
         <option
           v-for="beerType in this.beerTypes.data"
@@ -42,7 +45,7 @@
         </option>
       </select>
       <div class="actions">
-        <button type="submit" v-on:click="addBeer()">Add Beer</button>
+        <button class="form-button" type="submit" v-on:click="addBeer()">Add Beer</button>
       </div>
     </form>
   </div>
