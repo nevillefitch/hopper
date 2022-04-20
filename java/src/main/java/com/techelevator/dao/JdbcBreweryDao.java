@@ -8,9 +8,14 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.io.Console;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -160,7 +165,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     //todo call update hours and update socials methods
     @Override
-    public boolean updateBrewery(Brewery brewery) {
+    public boolean updateBrewery(Brewery brewery) throws ParseException {
         boolean success = false;
         String sql = "UPDATE brewery " +
                 "SET name = ?, email = ?, phone = ?, street_address = ?, " +
@@ -217,7 +222,7 @@ public class JdbcBreweryDao implements BreweryDao {
     }
 
 
-    public boolean updateHours(Brewery brewery) {
+    public boolean updateHours(Brewery brewery) throws ParseException {
         int breweryId    = brewery.getBreweryId();
         boolean success = false;
         int updateCount = 0;
@@ -231,11 +236,18 @@ public class JdbcBreweryDao implements BreweryDao {
         if (hoursSize > 0) {
             for (Hours day : hours) {
                 int count = 0;
-                LocalTime open  = day.getOpen();
-                LocalTime close = day.getClose();
+                String open  = day.getOpen();
+                String close = day.getClose();
+
+                DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                Date openTime = dateFormat.parse(open+":00");
+                Date closeTime = dateFormat.parse(close+":00");
+
+
+
                 int dayId = day.getDayId();
                 try {
-                    count = jdbcTemplate.update(sql, open, close, breweryId, day.getDayId());
+                    count = jdbcTemplate.update(sql, openTime, closeTime, breweryId, day.getDayId());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -317,8 +329,8 @@ public class JdbcBreweryDao implements BreweryDao {
         hours.setDayName(rowSet.getString("name"));
         hours.setDayId(rowSet.getInt("day_id"));
         hours.setDayAbbreviation(rowSet.getString("abbreviation"));
-        hours.setOpen(rowSet.getObject("open",LocalTime.class));
-        hours.setClose(rowSet.getObject("close",LocalTime.class));
+        hours.setOpen(rowSet.getString("open"));
+        hours.setClose(rowSet.getString("close"));
         return hours;
     }
 

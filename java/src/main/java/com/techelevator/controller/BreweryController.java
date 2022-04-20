@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -43,7 +44,7 @@ public class BreweryController {
 
     @PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(value = "", method = RequestMethod.PUT)
-    public boolean updateBrewery(@RequestBody Brewery brewery) {
+    public boolean updateBrewery(@RequestBody Brewery brewery) throws ParseException {
         if (dao.updateBrewery(brewery)) {
             return true;
         } else {

@@ -30,8 +30,8 @@
         </tr>
         <tr v-for="day in daysOpen" v-bind:key="day.dayName" class="hours">
           <td>{{ day.dayName }}</td>
-          <td>{{ day.open }}</td>
-          <td>{{ day.close }}</td>
+          <td>{{day.open}}</td>
+          <td>{{day.close}}</td>
         </tr>
       </div>
       <p>

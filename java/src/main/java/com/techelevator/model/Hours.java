@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class Hours {
@@ -7,8 +8,8 @@ public class Hours {
     private String dayName;
     private int dayId;
     private String dayAbbreviation;
-    private LocalTime open;
-    private LocalTime close;
+    private String open;
+    private String close;
 
 
     public int getDayId() {
@@ -35,19 +36,19 @@ public class Hours {
         this.dayAbbreviation = dayAbbreviation;
     }
 
-    public LocalTime getOpen() {
+    public String getOpen() {
         return open;
     }
 
-    public void setOpen(LocalTime open) {
+    public void setOpen(String open) {
         this.open = open;
     }
 
-    public LocalTime getClose() {
+    public String getClose() {
         return close;
     }
 
-    public void setClose(LocalTime close) {
+    public void setClose(String close) {
         this.close = close;
     }
 }
