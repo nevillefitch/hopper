@@ -3,7 +3,11 @@
     <form id="add-review-form" v-on:submit.prevent>
       <div class="field">
         <label class="form-label" for="rating">Rating: </label>
-        <input type="text" name="rating" id="rating" v-model="review.score" />
+        <select class="field" name="score" v-model="review.score">
+          <option value="">--Please choose an option--</option>
+          <option v-for="num in 5"
+          v-bind:key="num" :value="num">{{num}}</option>
+        </select>
       </div>
       <div class="field">
         <label class="form-label" for="message">Review: </label>
@@ -65,6 +69,9 @@ export default {
           "Error " + verb + " review. Request could not be created.";
       }
     },
+    scoreToInt() {
+
+    }
   },
   created() {
     this.review.beerId = this.$store.state.activeBeer.beerId;
