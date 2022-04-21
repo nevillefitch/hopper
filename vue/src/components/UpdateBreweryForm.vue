@@ -196,8 +196,9 @@ export default {
   margin: 2em auto;
   padding: 2em;
   border-radius: 10%;
-  background-color: burlywood;
+  background-color: rgba(129, 167, 129, .7);
   width: 80vw;
+  height: 72vh;
   /* grid-template-columns: repeat(3, 1fr);*/
 }
 

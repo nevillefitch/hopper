@@ -112,5 +112,6 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  height: 72vh;
 }
 </style>

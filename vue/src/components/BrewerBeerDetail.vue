@@ -123,6 +123,9 @@ grid-template-areas:
 "image image type type"
 "image image description description"
 "abv price rating button";
+background-color: rgb(129, 167, 129, .7);
+  border-radius: 2em;
+  margin-top: 2em;
 }
 
 .beerImgBeerDetail {

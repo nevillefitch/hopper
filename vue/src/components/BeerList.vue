@@ -123,7 +123,7 @@ export default {
   border-radius: calc(40 * 1px);
   overflow: hidden;
   text-decoration: none;
-  background-color: rgba(192, 189, 101, 0.7);
+  background-color: rgba(129, 167, 129, .5);
   justify-content: center;
   
   

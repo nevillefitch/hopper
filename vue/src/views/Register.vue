@@ -96,10 +96,6 @@ export default {
 
 <style>
 #register-div{ 
-  background-image: url("https://images7.alphacoders.com/288/thumb-1920-288712.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 20px;
+  min-height: 72vh;
 }
 </style>

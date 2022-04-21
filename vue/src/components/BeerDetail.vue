@@ -115,12 +115,13 @@ export default {
 } */
 
 .beer-detail {
-padding: 30px 6% 0 6%;
+  
+padding: 0px 3% 0 3%;
 position: relative;
 display: grid;
 flex-direction: column;
 align-items: center;
-width: 45%;
+width: 35%;
 margin: auto;
 justify-content:center;
 text-align: left;
@@ -130,8 +131,16 @@ grid-template-areas:
 "image image name name"
 "image image type type"
 "image image description description"
+<<<<<<< HEAD
 "abv price rating button"
 "inactive inactive inactive inactive";
+=======
+"abv price rating button";
+  background-color: rgb(129, 167, 129, .7);
+  border-radius: 2em;
+  margin-top: 2em;
+
+>>>>>>> color-change
 }
 
 .beerImgBeerDetail {

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button>
+      <button class="button-add-brewery">
         <router-link :to="{name : 'AdminAddBrewery'}">Add Brewery</router-link> 
       </button>
       <brewery-list/>
@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style>
-
+.button-add-brewery{
+  margin-bottom:2em;
+}
 </style>

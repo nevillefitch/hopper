@@ -120,7 +120,7 @@ export default {
 #add-beer-form, #create-brewery-form, #register-form, #login-form, #add-review-form {
   width: 200px;
   height: 400px;
-  background-color: rgb(110, 160, 110);
+  background-color: rgb(129, 167, 129);
   border-radius: 4%;
   margin: 20px auto;
   padding: 1em;
@@ -157,22 +157,18 @@ button{
   
 }
 #login-div{ 
-  background-image: url("https://wallpaperaccess.com/full/5422418.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 20px;
+  min-height: 72vh;
 }
 
 #add-beer-form {
   width: 200px;
   height: 550px;
 }
-#add-beer-div {
+/* #add-beer-div {
   background-image: url("https://ogden_images.s3.amazonaws.com/www.grit.com/images/2020/09/05140851/AdobeStock_92673762.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   padding: 40px;
-}
+} */
 </style>

@@ -118,12 +118,14 @@ td {
   grid-template-areas:
     "logo title hours"
     "logo contact hours"
-    "about picture picture"
-    "about picture picture";
+    ". about picture"
+    ". about picture";
   grid-template-columns: repeat(3, 1fr);
-
+  width: 100%;
   justify-items: center;
   align-items: center;
+  padding-left:1em;
+  min-height: 70vh;
 }
 .breweryLogo {
   grid-area: logo;
@@ -151,6 +153,7 @@ p {
   color: white;
   grid-area: hours;
   justify-self: right;
+  margin-top: 1em;
   margin-right: 50px;
   justify-content: center;
   flex-direction: column;
@@ -164,12 +167,12 @@ p {
 
 .about-us {
   color: white;
-  border: rgb(6, 66, 33) solid 3px;
+  /* border: rgb(6, 66, 33) solid 3px; */
   /* background-color: white; */
   border-radius: 15px;
   grid-area: about;
-  box-shadow: 10px 10px rgba(22, 168, 29, 0.15);
-  
+  /* box-shadow: 10px 10px rgba(22, 168, 29, 0.15); */
+  background-color: rgba(129, 167, 129, .5);
   padding: 5px;
 }
 
