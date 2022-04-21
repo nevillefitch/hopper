@@ -5,8 +5,9 @@
       :src="$store.state.activeBrewery.logo"
       alt="brewery logo"
     />
-    <h2 class="title">{{ $store.state.activeBrewery.name }}</h2>
+    
     <div class="logo-name">
+      <h2 class="title">{{ $store.state.activeBrewery.name }}</h2>
       <div>
         <label for="logo">Brewery Logo URL: </label>
         <input
@@ -122,8 +123,8 @@
           12:00 am.
         </p>
       </div>
-    </div>
-    <div class="button-area">
+
+      <div class="button-area">
       <div class="submit">
         <button type="submit" v-on:click="updateBrewery()">Update</button>
       </div>
@@ -139,6 +140,8 @@
         </button>
       </div>
     </div>
+    </div>
+    
   </form>
 </template>
 
@@ -189,10 +192,9 @@ export default {
 .update-form {
   display: grid;
   grid-template-areas:
-    "update-form-brewery-logo logo-name misc"
-    "title logo-name misc"
+    "title . misc"
     "about-us contact-info misc"
-    ". . button-area";
+    "about-us contact-info .";
   margin: 2em auto;
   padding: 2em;
   border-radius: 10%;
@@ -202,18 +204,21 @@ export default {
   /* grid-template-columns: repeat(3, 1fr);*/
 }
 
-.update-form-brewery-logo {
+/* .update-form-brewery-logo {
   grid-area: update-form-brewery-logo;
 }
 .logo-name {
   grid-area: logo-name;
-}
+} */
 .contact-info {
   grid-area: contact-info;
 }
 .about-us {
   grid-area: about-us;
   
+}
+.logo-title {
+  grid-area: title;
 }
 .misc {
   grid-area: misc;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="outer-div">
     <form id="add-review-form" v-on:submit.prevent>
       <div class="field">
         <label class="form-label" for="rating">Rating: </label>
@@ -84,5 +84,8 @@ export default {
 #message {
   width: 15em;
   height: 15em;
+}
+#outer-div {
+  min-height: 72vh;
 }
 </style>
