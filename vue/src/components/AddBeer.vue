@@ -111,4 +111,7 @@ export default {
 </script>
 
 <style>
+#add-beer-div {
+  min-height: 72vh;
+}
 </style>

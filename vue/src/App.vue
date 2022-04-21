@@ -1,102 +1,106 @@
 <template>
   <div id="app">
     <header id="routerLinkTest">
-      <router-link
-      class = "routerlinks"
-      v-bind:to="{ name: 'home' }"
-      >
-      <img
-        class="hopperLogo"
-        src="../src/resources/logoAndName.png"
-        alt="HopperLogo"
-      />
+      <router-link class="routerlinks" v-bind:to="{ name: 'home' }">
+        <img
+          class="hopperLogo"
+          src="../src/resources/logoAndName.png"
+          alt="HopperLogo"
+        />
       </router-link>
     </header>
-    <div class="nav">
-      <!-- would like to make this one router link that references a method... if there is time -DMB -->
-      <div class="nav-header">
-        <div class="nav-home">
-          <router-link
-            tag="a"
-            class="home"
-            v-bind:to="{ name: 'home' }"
+    <body>
+      <div class="nav">
+        <!-- would like to make this one router link that references a method... if there is time -DMB -->
+        <div class="nav-header">
+          <div class="nav-home">
+            <router-link
+              tag="a"
+              class="home"
+              v-bind:to="{ name: 'home' }"
+              v-if="
+                $store.state.token == '' ||
+                $store.state.user.authorities[0].name == 'ROLE_USER'
+              "
+              >Home</router-link
+            >
+            <router-link
+              tag="a"
+              class="home"
+              v-bind:to="{ name: 'AdminHome' }"
+              v-if="
+                $store.state.token != '' &&
+                $store.state.user.authorities[0].name == 'ROLE_ADMIN'
+              "
+              >Home
+            </router-link>
+            <router-link
+              tag="a"
+              class="home"
+              v-bind:to="{
+                name: 'brewerHome',
+                params: { id: this.$store.state.brewerHomeBrewery },
+              }"
+              v-if="
+                $store.state.token != '' &&
+                $store.state.user.authorities[0].name == 'ROLE_BREWER'
+              "
+              >Brewer Page
+            </router-link>
+          </div>
+          <span
+            class="nav-home"
             v-if="
-              $store.state.token == '' ||
-              $store.state.user.authorities[0].name == 'ROLE_USER'
+              $store.state.token != '' &&
+              $store.state.user.authorities[0].name == 'ROLE_BREWER'
             "
-            >Home</router-link
+            >&nbsp;|&nbsp;</span
+          >
+          <div class="nav-home">
+            <router-link
+              class="home"
+              v-bind:to="{ name: 'home' }"
+              v-if="
+                $store.state.token != '' &&
+                $store.state.user.authorities[0].name == 'ROLE_BREWER'
+              "
+              >Breweries
+            </router-link>
+          </div>
+        </div>
+        <div class="nav-links">
+          <span class="welcome">
+            {{
+              $store.state.token == ""
+                ? ""
+                : `Welcome, ${$store.state.user.username}`
+            }}
+          </span>
+          <router-link
+            v-bind:to="{ name: 'logout' }"
+            v-if="$store.state.token != ''"
+            id="logout"
+            >Logout</router-link
           >
           <router-link
-            tag="a"
-            class="home"
-            v-bind:to="{ name: 'AdminHome' }"
-            v-if="
-              $store.state.token != '' &&
-              $store.state.user.authorities[0].name == 'ROLE_ADMIN'
-            "
-          >Home
+            id="login"
+            v-bind:to="{ name: 'login' }"
+            v-if="$store.state.token == ''"
+            >Login
           </router-link>
+          <span class="nav-links" v-if="$store.state.token == ''"
+            >&nbsp;|&nbsp;</span
+          >
           <router-link
-            tag="a"
-            class="home"
-            v-bind:to="{
-              name: 'brewerHome',
-              params: { id: this.$store.state.brewerHomeBrewery },
-            }"
-            v-if="
-              $store.state.token != '' &&
-              $store.state.user.authorities[0].name == 'ROLE_BREWER'
-            "
-            >Brewer Page
-          </router-link>
-        </div>
-        <span class="nav-home" v-if="
-              $store.state.token != '' &&
-              $store.state.user.authorities[0].name == 'ROLE_BREWER'
-            ">&nbsp;|&nbsp;</span>
-        <div class="nav-home">
-          <router-link
-            class="home"
-            v-bind:to="{ name: 'home' }"
-            v-if="
-              $store.state.token != '' &&
-              $store.state.user.authorities[0].name == 'ROLE_BREWER'
-            "
-            >Breweries
-          </router-link>
+            id="register"
+            v-bind:to="{ name: 'register' }"
+            v-if="$store.state.token == ''"
+            >Register</router-link
+          >
+          <!-- Not sure what order the nav should be, CSS designers figure it out please -->
         </div>
       </div>
-      <div class="nav-links">
-        <span class="welcome">
-          {{
-            $store.state.token == ""
-              ? ""
-              : `Welcome, ${$store.state.user.username}`
-          }}
-        </span>
-        <router-link
-          v-bind:to="{ name: 'logout' }"
-          v-if="$store.state.token != ''"
-          id="logout"
-          >Logout</router-link
-        >
-        <router-link
-          id="login"
-          v-bind:to="{ name: 'login' }"
-          v-if="$store.state.token == ''"
-          >Login </router-link
-        >
-        <span class="nav-links" v-if=" $store.state.token == '' ">&nbsp;|&nbsp;</span>
-        <router-link
-          id="register"
-          v-bind:to="{ name: 'register' }"
-          v-if="$store.state.token == ''"
-          >Register</router-link
-        >
-        <!-- Not sure what order the nav should be, CSS designers figure it out please -->
-      </div>
-    </div>
-    <body>
+
       <router-view />
     </body>
     <footer>
@@ -126,19 +130,25 @@ export default {
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Londrina+Sketch&family=Questrial&display=swap");
 body {
-  background-color: rgb(22, 21, 18);;
+  background-image: url(../src/resources/41587_2021_1202_Figa_HTMLgrey.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: rgb(129, 167, 129);
   margin-left: 0;
   margin-right: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Questrial", sans-serif;
   margin-top: 0;
+  margin-bottom: -1em;
+
 }
 header {
   display: flex;
   width: 100%;
   margin: -1em 0em;
-  background-color: rgb(47, 100, 124);
+  background-color: rgb(129, 167, 129);
   justify-content: center;
 }
 #nav {
@@ -152,13 +162,16 @@ footer {
   display: flex;
   justify-content: center;
   align-content: center;
-  flex-direction: row;
+  flex-direction: column;
   height: 5em;
-  background-color: rgb(47, 100, 124);
+  background-color: rgb(129, 167, 129);
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: -1em 0em 2em 0em;
+  margin: 1em 0em -1em 0em;
+  bottom: 0;
+  
+  width: 100%;
 }
 .nav {
   height: 4.5vh;
@@ -190,13 +203,13 @@ footer {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  color: #EFEFEF;
+  color: #efefef;
 }
 .nav > .nav-links > span {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  color: #EFEFEF;
+  color: #efefef;
 }
 .nav > .nav-header > .nav-home {
   display: inline-block;
@@ -206,7 +219,6 @@ footer {
   overflow-y: hidden;
   top: 50px;
   left: 0px;
-
 }
 .nav > .nav-header > .nav-home:hover {
   background-color: rgba(0, 0, 0, 0.3);
@@ -215,7 +227,7 @@ footer {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  color: #EFEFEF;
+  color: #efefef;
 }
 .nav > .nav-links > a:hover {
   background-color: rgba(0, 0, 0, 0.3);

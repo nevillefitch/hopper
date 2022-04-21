@@ -121,7 +121,7 @@ export default {
   border-radius: calc(40 * 1px);
   overflow: hidden;
   text-decoration: none;
-  background-color: rgba(53, 113, 141, 0.7);
+  background-color: rgba(129, 167, 129, .5);
   justify-content: center;
 }
 
@@ -250,10 +250,9 @@ export default {
   background-size:cover;
   justify-content: space-evenly;
   display: inline-block;
+  margin: -20px;
 }
 
-.brewery-form img {
-}
 
 .brewery-form ::backdrop{
   filter: grayscale()

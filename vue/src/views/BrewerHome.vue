@@ -67,10 +67,10 @@ a {
   color: black;
   text-decoration: none;
 }
-.beer {
+/* .beer {
   background-image: url("https://wallpaper.dog/large.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-}
+} */
 </style>

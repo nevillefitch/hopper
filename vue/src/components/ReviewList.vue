@@ -90,14 +90,17 @@ export default {
   align-items: left;
   flex-wrap: wrap;
   width: 100%;
+  
 }
 
 .review {
-  width: 25%;
+  width: 20%;
   padding: 20px;
   box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin: 15px;
+  background-color: rgba(132, 195, 132, 0.7);
+  border-radius: 2em
 }
 table {
   border-collapse: collapse;

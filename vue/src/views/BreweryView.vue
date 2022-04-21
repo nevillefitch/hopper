@@ -15,10 +15,10 @@ export default {
 </script>
 
 <style>
-.beer {
-  background-image: url(../../src/resources/41587_2021_1202_Figa_HTMLgrey.jpg);
+/* .beer {
+  background-image: url(../../src/resources/20483358grey.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-}
+} */
 </style>
