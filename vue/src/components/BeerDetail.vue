@@ -1,43 +1,68 @@
 <template>
   <div class="outer">
-  <div class="beer-detail">
-    
-    <img class="beerImgBeerDetail" :src="$store.state.activeBeer.imagePath" alt="beerImg" />
-    <h2 id="beerName" class="beerDetailItem">{{ $store.state.activeBeer.name }}  </h2>
-    <p id="beerType" class="beerDetailItem">Style: {{ $store.state.activeBeer.beerType }}</p>
-    <p id="beerDescription" class="beerDetailItem">{{ $store.state.activeBeer.description }}</p>
-    <p id="beerAbv" class="beerDetailItem">ABV<br/> {{ $store.state.activeBeer.abv }}</p>
-    <p id="beerPrice" class="beerDetailItem">Price<br/> ${{($store.state.activeBeer.price).toFixed(2)}}</p>
-    <p id ="beerAverageRating">Average Rating<br/> {{ $store.state.activeBeer.avgScore.toFixed(2)}}</p>
+    <div class="beer-detail">
+      <img
+        class="beerImgBeerDetail"
+        :src="$store.state.activeBeer.imagePath"
+        alt="beerImg"
+      />
+      <h2 id="beerName" class="beerDetailItem">
+        {{ $store.state.activeBeer.name }}
+      </h2>
+      <p id="beerType" class="beerDetailItem">
+        Style: {{ $store.state.activeBeer.beerType }}
+      </p>
+      <p id="beerDescription" class="beerDetailItem">
+        {{ $store.state.activeBeer.description }}
+      </p>
+      <p id="beerAbv" class="beerDetailItem">
+        ABV<br />
+        {{ $store.state.activeBeer.abv }}
+      </p>
+      <p id="beerPrice" class="beerDetailItem">
+        Price<br />
+        ${{ $store.state.activeBeer.price.toFixed(2) }}
+      </p>
+      <p id="beerAverageRating">
+        Average Rating<br />
+        {{ $store.state.activeBeer.avgScore.toFixed(2) }}
+      </p>
 
-     <button id ="writeReviewButton">
-      <router-link :to="{ name: 'addReview', params: {id:$store.state.activeBeer.beerId} }">Add Review</router-link>
-    </button>
-    <p id="beerActiveStatus" class="beerDetailItem">
+      <button id="writeReviewButton">
+        <router-link
+          :to="{
+            name: 'addReview',
+            params: { id: $store.state.activeBeer.beerId },
+          }"
+          >Add Review</router-link
+        >
+      </button>
+      <p id="beerActiveStatus" class="beerDetailItem">
         {{
           $store.state.activeBeer.active
             ? ""
             : "This beer is currently unavailable. Please check back soon!"
         }}
       </p>
-  </div>
+    </div>
   </div>
 </template>
 
 <script>
-import BeerService from "../services/BeerService.js"
+import BeerService from "../services/BeerService.js";
 export default {
   name: "beer",
   methods: {
-    getBeer() {     
-      BeerService.getBeerById(this.$route.params.id).then((response) => {
+    getBeer() {
+      BeerService.getBeerById(this.$route.params.id)
+        .then((response) => {
           this.$store.commit("SET_UPDATED_ACTIVE_BEER", response.data);
-      })
-      .catch((error) => {
+        })
+        .catch((error) => {
           this.handleErrorResponse(error, "retrieving");
         });
     },
-        handleErrorResponse(error, verb) {
+    handleErrorResponse(error, verb) {
       if (error.response) {
         this.errorMsg =
           "Error " +
@@ -46,8 +71,7 @@ export default {
           error.response.statusText +
           "'.";
       } else if (error.request) {
-        this.errorMsg =
-          "Error " + verb + " beer. Server could not be reached.";
+        this.errorMsg = "Error " + verb + " beer. Server could not be reached.";
       } else {
         this.errorMsg =
           "Error " + verb + " beer. Request could not be created.";
@@ -56,20 +80,18 @@ export default {
   },
   created() {
     this.getBeer();
-  }
+  },
 };
-
 </script>
 
 <style scoped>
-
 #writeReviewButton {
   grid-area: button;
   background-color: #5b965d;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -89,14 +111,13 @@ export default {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-#writeReviewButton a{
+#writeReviewButton a {
   text-decoration: none;
 }
-#writeReviewButton a:visited{
+#writeReviewButton a:visited {
   text-decoration: none;
   color: white;
 }
-
 
 #writeReviewButton:hover,
 #writeReviewButton:focus {
@@ -115,47 +136,41 @@ export default {
 } */
 
 .beer-detail {
-  
-padding: 0px 3% 0 3%;
-position: relative;
-display: grid;
-flex-direction: column;
-align-items: center;
-width: 35%;
-margin: auto;
-justify-content:center;
-text-align: left;
-box-sizing: border-box;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-grid-template-areas:
-"image image name name"
-"image image type type"
-"image image description description"
-<<<<<<< HEAD
-"abv price rating button"
-"inactive inactive inactive inactive";
-=======
-"abv price rating button";
-  background-color: rgb(129, 167, 129, .7);
+  padding: 0px 3% 0 3%;
+  position: relative;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  width: 35%;
+  margin: auto;
+  justify-content: center;
+  text-align: left;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "image image name name"
+    "image image type type"
+    "image image description description"
+    "abv price rating button"
+    "inactive inactive inactive inactive";
+  background-color: rgb(129, 167, 129, 0.7);
   border-radius: 2em;
   margin-top: 2em;
-
->>>>>>> color-change
 }
 
 .beerImgBeerDetail {
- width: 11em;
- vertical-align: center;
- border-style: none;
- display: block;
- padding: 10px;
- box-sizing: border-box;
- grid-area: image;
- }
+  width: 11em;
+  vertical-align: center;
+  border-style: none;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  grid-area: image;
+}
 
 .beerDetailItem {
-text-align: left;
-grid-area: beerDetailItem;
+  text-align: left;
+  grid-area: beerDetailItem;
 }
 
 #beerName {
@@ -181,7 +196,7 @@ grid-area: beerDetailItem;
 }
 
 #beerAbv {
-  grid-area: abv
+  grid-area: abv;
 }
 
 #beerPrice {
@@ -191,7 +206,4 @@ grid-area: beerDetailItem;
 #beerAverageRating {
   grid-area: rating;
 }
-
-
-
 </style>
