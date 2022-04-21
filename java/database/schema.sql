@@ -266,16 +266,16 @@ VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Cigar City Brewery'),
 
 
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Mon'),'9:00:00','16:00:00');
-INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Tues'),'9:00:00','16:00:00');
+INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Tue'),'9:00:00','16:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Wed'),'9:00:00','16:00:00');
-INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Thur'),'9:00:00','16:00:00');
+INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Thu'),'9:00:00','16:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Fri'),'9:00:00','16:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Sat'),'9:00:00','16:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Jolly Pumpkin'),(SELECT day_id FROM day WHERE abbreviation = 'Sun'),'9:00:00','16:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Mon'),'0:00:00','0:00:00');
-INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Tues'),'9:00:00','21:00:00');
+INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Tue'),'9:00:00','21:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Wed'),'9:00:00','21:00:00');
-INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Thur'),'9:00:00','22:00:00');
+INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Thu'),'9:00:00','22:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Fri'),'16:00:00','24:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Sat'),'13:00:00','24:00:00');
 INSERT INTO hours (brewery_id, day_id, open, close) VALUES ((SELECT brewery_id FROM brewery WHERE name = 'Brew Detroit'),(SELECT day_id FROM day WHERE abbreviation = 'Sun'),'13:00:00','18:00:00');

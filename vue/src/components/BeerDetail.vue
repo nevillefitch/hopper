@@ -1,4 +1,5 @@
 <template>
+  <div class="outer">
   <div class="beer-detail">
     
     <img class="beerImgBeerDetail" :src="$store.state.activeBeer.imagePath" alt="beerImg" />
@@ -12,9 +13,15 @@
      <button id ="writeReviewButton">
       <router-link :to="{ name: 'addReview', params: {id:$store.state.activeBeer.beerId} }">Add Review</router-link>
     </button>
-    <hr>
+    <p id="beerActiveStatus" class="beerDetailItem">
+        {{
+          $store.state.activeBeer.active
+            ? ""
+            : "This beer is currently unavailable. Please check back soon!"
+        }}
+      </p>
   </div>
-  
+  </div>
 </template>
 
 <script>
@@ -123,7 +130,8 @@ grid-template-areas:
 "image image name name"
 "image image type type"
 "image image description description"
-"abv price rating button";
+"abv price rating button"
+"inactive inactive inactive inactive";
 }
 
 .beerImgBeerDetail {
@@ -146,6 +154,11 @@ grid-area: beerDetailItem;
   justify-self: start;
   box-sizing: border-box;
   grid-area: name;
+}
+
+#beerActiveStatus {
+  grid-area: inactive;
+  text-align: center;
 }
 
 #beerDescription {

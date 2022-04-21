@@ -1,7 +1,7 @@
 <template>
   <div class="beer__cards">
     <div
-      v-for="beer in activeBeerList"
+      v-for="beer in this.$store.state.activeBeers"
       v-bind:key="beer.beerId"
       class="beer__cards"
     >
